@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="fitnessStudioMobileApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:fitnessStudioMobileApp.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Element">
+                <Setter Property="NavigationPage.HasNavigationBar" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:SignupPage}"
+        Route="LoginPage">
+
+        <!--Tab Bar-->
+    </ShellContent>
+    <TabBar x:Name="NavigationBar" Route="main">
+        <Tab Title="Home" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>
+        </Tab>
+        <Tab Title="Schedule" Icon="schedule.png">
+            <ShellContent ContentTemplate="{DataTemplate local:BookingPage}"/>
+        </Tab>
+        <Tab Title="Memberships"  Icon="membership.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MembershipPage}"/>
+        </Tab>
+        <Tab Title="Profile" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}"/>
+        </Tab>
+    </TabBar>
+</Shell>

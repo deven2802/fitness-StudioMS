@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitnessStudioMobileApp.Views.MembershipPage"
+             Title="MembershipPage">
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Start" Padding="30,30">
+            <Frame HeightRequest="150" Padding="0" Margin="{OnPlatform '0,20,0,0'}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="package_list.png" HeightRequest="50" Grid.Column="0" HorizontalOptions="Start" Margin="20,0,0,0"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Weekly Package Subscription"
+                                   FontSize="24"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   Margin="0,20,0,0"
+                                   Grid.Row="0"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label Text="RM20"
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   Margin="0,20,0,0"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Row="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame HeightRequest="150" Padding="0" Margin="{OnPlatform '0,20,0,0'}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="package_list.png" HeightRequest="50" Grid.Column="0" HorizontalOptions="Start" Margin="20,0,0,0"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Monthly Package Subscription"
+                                   FontSize="24"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   Margin="0,20,0,0"
+                                   Grid.Row="0"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label Text="RM60"
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   Margin="0,20,0,0"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Row="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame HeightRequest="150" Padding="0" Margin="{OnPlatform '0,20,0,0'}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="package_list.png" HeightRequest="50" Grid.Column="0" HorizontalOptions="Start" Margin="20,0,0,0"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Yearly Package Subscription"
+                                   FontSize="24"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   Margin="0,20,0,0"
+                                   Grid.Row="0"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label Text="RM200"
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   Margin="0,20,0,0"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Row="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+        </VerticalStackLayout>
+        
+    </ScrollView>
+</ContentPage>

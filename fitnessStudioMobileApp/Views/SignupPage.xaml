@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:fitnessStudioMobileApp"
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="fitnessStudioMobileApp.Views.SignupPage"
+             Title=""
+             BackgroundColor="{StaticResource MainBackgroundColor}">
+    
+    <!--Main body of signup Page-->
+    <StackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
+        <!--Title Section-->
+        <Frame HasShadow="False" VerticalOptions="Start" BorderColor="Transparent" BackgroundColor="{StaticResource MainBackgroundColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                </Grid.RowDefinitions>
+                <Label Text="Hey There,"
+                           TextColor="{StaticResource NormalTextColor}"
+                           FontFamily="WorkSansMedium"
+                           CharacterSpacing="-0.5"
+                           FontSize="{OnPlatform 20}"
+                           HorizontalOptions="Center"
+                           Grid.Row="0"/>
+                <Label Text="Create an Account"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansSemiBold"
+                       CharacterSpacing="-0.5"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       Grid.Row="1"/>
+            </Grid>
+        </Frame>
+
+        <!--Register boxes details-->
+        <VerticalStackLayout>
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,50,0,0'}" Hint="Full Name" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 75}" HelperText="Please enter your full name" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <!--entry details-->
+                <Entry Placeholder="Alice Wong Li Li"
+                       PlaceholderColor="{StaticResource BlurTextColor}"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansRegular"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
+
+                <!--icons-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="profile.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
+
+                <!--inputLayout hint and helperLabelStyle text color-->
+                <inputLayout:SfTextInputLayout.HintLabelStyle>
+                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                <!--indicates the border color while it is normal and focus-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Email" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 75}" HelperText="Please enter your email" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <!--entry details-->
+                <Entry Placeholder="abc123@gmail.com"
+                       PlaceholderColor="{StaticResource BlurTextColor}"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansRegular"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
+
+                <!--icons-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="email.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
+
+                <!--inputLayout hint and helperLabelStyle text color-->
+                <inputLayout:SfTextInputLayout.HintLabelStyle>
+                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                <!--indicates the border color while it is normal and focus-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 75}" 
+                                           HelperText="Please enter your password" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <!--entry details-->
+                <Entry x:Name="PasswordEntry" 
+                       TextChanged="OnPasswordChanged"
+                       Placeholder=""
+                       PlaceholderColor="{StaticResource BlurTextColor}"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansRegular"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
+
+                <!--icons-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="password.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
+
+                <!--inputLayout hint and helperLabelStyle text color-->
+                <inputLayout:SfTextInputLayout.HintLabelStyle>
+                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                <!--indicates the border color while it is normal and focus and error-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Confirm Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 75}" 
+                                           HelperText="Please confirm your password" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <!--entry details-->
+                <Entry x:Name="ConfirmPasswordEntry"
+                       TextChanged="OnConfirmPasswordChanged"
+                       Placeholder=""
+                       PlaceholderColor="{StaticResource BlurTextColor}"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansRegular"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
+
+                <!--icons-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="password.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
+
+
+                <!--inputLayout hint and helperLabelStyle text color-->
+                <inputLayout:SfTextInputLayout.HintLabelStyle>
+                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                <!--<inputLayout:SfTextInputLayout.ErrorLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource ErrorTextColor}"/>
+                </inputLayout:SfTextInputLayout.ErrorLabelStyle>-->
+
+
+                <!--indicates the border color while it is normal and focus and error-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Error">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#E53935"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </inputLayout:SfTextInputLayout>
+        </VerticalStackLayout>
+
+        <!--Sign up button-->
+        <Button Text="Next" 
+                TextColor="#FFF8EA"
+                FontSize="20"
+                FontFamily="WorkSansSemiBold"
+                CharacterSpacing="-0.5"
+                BackgroundColor="{StaticResource ActiveButtonBackgroundColor}" 
+                HeightRequest="50" 
+                Margin="{OnPlatform '0,10,0,0'}"
+                CornerRadius="10"
+                Command="{Binding GoToSignupPage2Command}"/>
+        <!--This command cannot work properly-->
+
+        <!--Log in-->
+        <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="Center" 
+                     Margin="{OnPlatform '0,10,0,0'}"
+                     Padding="{OnPlatform '0,7,0,7'}">
+
+            <Label Text="Do you have an account?"
+                   TextColor="#402E32"
+                   FontFamily="WorkSansMedium"
+                   CharacterSpacing="-0.5"
+                   FontSize="16"/>
+
+            <Button BackgroundColor="White"
+                    Text="Login"
+                    TextColor="#002FA7"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    FontFamily="WorkSansSemiBold"
+                    CharacterSpacing="-0.5"
+                    HorizontalOptions="Start"
+                    HeightRequest="20"
+                    Margin="5,0"
+                    Command="{Binding BackToLoginPageCommand}"
+                    Padding="0"/>
+            <!--<Label 
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackToLoginCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>-->
+        </StackLayout>
+
+
+
+
+
+    </StackLayout>
+</ContentPage>

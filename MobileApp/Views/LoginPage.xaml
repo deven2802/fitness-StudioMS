@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileApp"
+             x:Class="MobileApp.Views.LoginPage"
+             Title="LoginPage">
+
+    <StackLayout VerticalOptions="Start" Padding="30,30">
+
+        <!--Title Section-->
+        <Frame HasShadow="False" BackgroundColor="#FFFBE9" VerticalOptions="Start">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="Hey There,"
+                           TextColor="#402E32"
+                           FontFamily="WorkSansMedium"
+                           CharacterSpacing="-0.5"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           Grid.Row="0"></Label>
+                <Label Text="Log In With Your Account"
+                       TextColor="#402E32"
+                       FontFamily="WorkSansSemiBold"
+                       CharacterSpacing="-0.5"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       Grid.Row="1"/>
+            </Grid>
+        </Frame>
+
+        <VerticalStackLayout>
+            <Frame Margin="{OnPlatform '0,50,0,0', Android='0,50,0,0', iOS='0,50,0,0'}" HasShadow="True" Padding="{OnPlatform 7, Android=7, iOS=7}" CornerRadius="{OnPlatform 15}" BackgroundColor="#FFF2B8" HeightRequest="{OnPlatform 50, Android=50, iOS=50} ">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="profile.png"
+                           Grid.Column="0"
+                           HeightRequest="25"
+                           Margin="{OnPlatform '10,0,0,0', Android='10,0,0,0', iOS='10,0,0,0'}"
+                           HorizontalOptions="Start"/>
+
+                    <local:BorderlessEntry Placeholder="Username"
+                                           Grid.Column="1"
+                                           TextColor="#402E32"
+                                           PlaceholderColor="#402E32"
+                                           HorizontalOptions="FillAndExpand"
+                                           FontFamily="WorkSansRegular"
+                                           FontSize="16"
+                                           CharacterSpacing="-0.5"
+                                           Margin="{OnPlatform '20,0,0,0', Android='20,0,0,0', iOS='20,0,0,0'}"/>
+                </Grid>
+            </Frame>
+
+            <Frame Margin="{OnPlatform '0,20,0,0', Android='0,20,0,0', iOS='0,20,0,0'}" HasShadow="True" Padding="{OnPlatform 7, Android=7, iOS=7}" CornerRadius="{OnPlatform 15}" BackgroundColor="#FFF2B8" HeightRequest="{OnPlatform 50, Android=50, iOS=50} ">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="password.png"
+                           Grid.Column="0"
+                           HeightRequest="25"
+                           Margin="{OnPlatform '10,0,0,0', Android='10,0,0,0', iOS='10,0,0,0'}"
+                           HorizontalOptions="Start"/>
+
+                    <local:BorderlessEntry x:Name="passwordEntry"
+                                           Placeholder="Password"
+                                           IsPassword="True"
+                                           Text="{Binding Password}"
+                                           Grid.Column="1"
+                                           TextColor="#402E32"
+                                           PlaceholderColor="#402E32"
+                                           HorizontalOptions="FillAndExpand"
+                                           FontSize="16"
+                                           FontFamily="WorkSansRegular"
+                                           CharacterSpacing="-0.5"
+                                           Margin="{OnPlatform '20,0,0,0', Android='20,0,0,0', iOS='20,0,0,0'}"/>
+
+                    <Image x:Name="togglePasswordImage"
+                           Source="{Binding PasswordIcon}"
+                           Grid.Column="2"
+                           HeightRequest="25"
+                           Margin="{OnPlatform '0,0,10,0'}"
+                           HorizontalOptions="End">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TogglePasswordVisibility"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+
+            <Label Text="Forgot Password?"
+                   TextColor="#846E32"
+                   FontSize="16"
+                   FontFamily="WorkSansMedium"
+                   CharacterSpacing="-0.5"
+                   HorizontalTextAlignment="End"
+                   Margin="{OnPlatform '0,10,0,0'}">
+
+            </Label>
+
+            <Button Text="Login" 
+                    TextColor="#FFF8EA"
+                    FontSize="20"
+                    FontFamily="WorkSansSemiBold"
+                    CharacterSpacing="-0.5"
+                    BackgroundColor="#846E32" 
+                    HeightRequest="50" 
+                    Margin="{OnPlatform '0,200,0,0'}"
+                    CornerRadius="10"
+                    Command="{Binding LoginCommand}"/>
+
+        </VerticalStackLayout>
+
+    </StackLayout>
+
+</ContentPage>

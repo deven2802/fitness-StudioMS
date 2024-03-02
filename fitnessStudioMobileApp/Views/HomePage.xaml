@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:fitnessStudioMobileApp"
+             x:Class="fitnessStudioMobileApp.Views.HomePage"
+             Shell.NavBarIsVisible="True"
+             Title="HomePage">
+    <ScrollView>
+        
+    <VerticalStackLayout VerticalOptions="Start" Padding="30,30">
+            <HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="170"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Announcement"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           Grid.Column="0"/>
+
+                    <Label Text="See All"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           Grid.Column="1"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"/>
+                </Grid>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="{OnPlatform '0,20,0,0'}">
+                <Frame HeightRequest="{OnPlatform 200}" WidthRequest="{OnPlatform 200}" Padding="0" Margin="{OnPlatform '0,0,10,0'}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="imagepath.png" Grid.Row="0" BackgroundColor="Azure"/>
+                        <Label Text="Announcement Display Here"
+                           FontSize="16"
+                           TextColor="Black"
+                           Grid.Row="1"/>
+                    </Grid>
+                </Frame>
+
+                <Frame HeightRequest="{OnPlatform 200}" WidthRequest="{OnPlatform 200}" Padding="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="imagepath.png" Aspect="AspectFit" Grid.Row="0" BackgroundColor="Azure"/>
+                        <Label Text="Announcement Display Here"
+                           FontSize="16"
+                           TextColor="Black"
+                           Grid.Row="1"/>
+                    </Grid>
+                </Frame>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout Margin="{OnPlatform '0,20,0,0'}">
+                <HorizontalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="170"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Explore Classes"
+                           FontSize="24"
+                               Grid.Column="0"
+                           FontAttributes="Bold"/>
+                        <Label Text="See All"
+                               FontSize="16"
+                               Grid.Column="1"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End"/>
+                    </Grid>
+                    
+                    
+                </HorizontalStackLayout>
+                <Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Yoga"
+                           TextColor="Black"
+                           FontSize="20"
+                               Grid.Row="0"
+                           FontAttributes="Bold"/>
+                        <Label Text="5:00pm - 6:00pm"
+                           TextColor="Black"
+                           FontSize="16"
+                               Margin="{OnPlatform '0,5,0,5'}"
+                               Grid.Row="1"/>
+                        <Label Text="Coach: Wong Li Li"
+                               TextColor="Black"
+                               FontSize="16"
+                               Grid.Row="2"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Yoga"
+                           TextColor="Black"
+                           FontSize="20"
+                               Grid.Row="0"
+                           FontAttributes="Bold"/>
+                        <Label Text="5:00pm - 6:00pm"
+                           TextColor="Black"
+                           FontSize="16"
+                               Margin="{OnPlatform '0,5,0,5'}"
+                               Grid.Row="1"/>
+                        <Label Text="Coach: Wong Li Li"
+                               TextColor="Black"
+                               FontSize="16"
+                               Grid.Row="2"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Yoga"
+                           TextColor="Black"
+                           FontSize="20"
+                               Grid.Row="0"
+                           FontAttributes="Bold"/>
+                        <Label Text="5:00pm - 6:00pm"
+                           TextColor="Black"
+                           FontSize="16"
+                               Margin="{OnPlatform '0,5,0,5'}"
+                               Grid.Row="1"/>
+                        <Label Text="Coach: Wong Li Li"
+                               TextColor="Black"
+                               FontSize="16"
+                               Grid.Row="2"/>
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+
+
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
