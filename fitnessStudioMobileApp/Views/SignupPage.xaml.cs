@@ -1,4 +1,3 @@
-using fitnessStudioMobileApp.Services;
 using fitnessStudioMobileApp.ViewModels;
 
 namespace fitnessStudioMobileApp.Views;

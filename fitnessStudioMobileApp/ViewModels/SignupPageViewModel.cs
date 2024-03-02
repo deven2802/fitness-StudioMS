@@ -1,5 +1,4 @@
-﻿using fitnessStudioMobileApp.Services;
-using fitnessStudioMobileApp.Views;
+﻿using fitnessStudioMobileApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +12,16 @@ using Microsoft.Maui.Controls;
 
 namespace fitnessStudioMobileApp.ViewModels
 {
-    public class SignupPageViewModel : INotifyPropertyChanged, ObservableObject
+    public partial class SignupPageViewModel : ObservableObject
     {
+        //navigate to other pages command code
+        [RelayCommand]
+        public async void BackToLoginPage()
+        {
+
+        }
+
+
         private string _password;
         public string Password
         {
@@ -50,12 +57,12 @@ namespace fitnessStudioMobileApp.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /*public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }*/
 
         private void CheckPasswordsMatch()
         {
@@ -64,7 +71,6 @@ namespace fitnessStudioMobileApp.ViewModels
 
         //NavigationService Command
         public ICommand GoToSignupPage2Command { get; }
-        public ICommand BackToLoginPageCommand { get; }
 
        
 

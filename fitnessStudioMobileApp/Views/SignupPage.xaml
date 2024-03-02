@@ -18,12 +18,12 @@
                     <RowDefinition Height="{OnPlatform *}"/>
                 </Grid.RowDefinitions>
                 <Label Text="Hey There,"
-                           TextColor="{StaticResource NormalTextColor}"
-                           FontFamily="WorkSansMedium"
-                           CharacterSpacing="-0.5"
-                           FontSize="{OnPlatform 20}"
-                           HorizontalOptions="Center"
-                           Grid.Row="0"/>
+                        TextColor="{StaticResource NormalTextColor}"
+                        FontFamily="WorkSansMedium"
+                        CharacterSpacing="-0.5"
+                        FontSize="{OnPlatform 20}"
+                        HorizontalOptions="Center"
+                        Grid.Row="0"/>
                 <Label Text="Create an Account"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansSemiBold"
@@ -125,7 +125,7 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry" 
-                       TextChanged="OnPasswordChanged"
+                       
                        Placeholder=""
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
@@ -170,13 +170,14 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="ConfirmPasswordEntry"
-                       TextChanged="OnConfirmPasswordChanged"
+                       
                        Placeholder=""
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
                        CharacterSpacing="-0.5"
                        FontSize="16"/>
+                <!--TextChanged="OnConfirmPasswordChanged"-->
 
                 <!--icons-->
                 <inputLayout:SfTextInputLayout.LeadingView>
@@ -229,7 +230,7 @@
                 CharacterSpacing="-0.5"
                 BackgroundColor="{StaticResource ActiveButtonBackgroundColor}" 
                 HeightRequest="50" 
-                Margin="{OnPlatform '0,10,0,0'}"
+                Margin="{OnPlatform '0,50,0,0'}"
                 CornerRadius="10"
                 Command="{Binding GoToSignupPage2Command}"/>
         <!--This command cannot work properly-->
@@ -246,6 +247,17 @@
                    CharacterSpacing="-0.5"
                    FontSize="16"/>
 
+            <Label Text="Login"
+                   TextColor="{StaticResource ActiveTextColor}"
+                   CharacterSpacing="-0.5"
+                   FontFamily="WorkSansSemiBold"
+                   FontSize="16"
+                   Margin="{OnPlatform '10,0'}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackToLoginPageCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
             <Button BackgroundColor="White"
                     Text="Login"
                     TextColor="#002FA7"
@@ -256,7 +268,7 @@
                     HorizontalOptions="Start"
                     HeightRequest="20"
                     Margin="5,0"
-                    Command="{Binding BackToLoginPageCommand}"
+                    Command="{Binding BackToLoginCommand}"
                     Padding="0"/>
             <!--<Label 
                 <Label.GestureRecognizers>

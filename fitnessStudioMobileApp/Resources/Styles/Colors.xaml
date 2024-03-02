@@ -26,6 +26,7 @@
     <Color x:Key="ActiveEntryBackgroundColor">#E5FFFF</Color>
     <Color x:Key="BlurTextColor">#6E6E6E</Color>
     <Color x:Key="FocusBorderColor">#3EA99F</Color>
+    <Color x:Key="ActiveTextColor">#002FA7</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
