@@ -12,7 +12,7 @@ public partial class WelcomePage : ContentPage
         var signupPage = new SignupPage();
 
 
-        await Navigation.PushAsync(signupPage);
+        await Shell.Current.GoToAsync($"{nameof(SignupPage)}");
     }
 
 }

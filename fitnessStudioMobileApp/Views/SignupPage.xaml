@@ -4,8 +4,11 @@
              xmlns:local="clr-namespace:fitnessStudioMobileApp"
              xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
              xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="fitnessStudioMobileApp.Views.SignupPage"
              Title=""
+             Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource MainBackgroundColor}">
     
     <!--Main body of signup Page-->
@@ -28,7 +31,7 @@
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansSemiBold"
                        CharacterSpacing="-0.5"
-                       FontSize="24"
+                       FontSize="{OnPlatform 24}"
                        HorizontalOptions="Center"
                        Grid.Row="1"/>
             </Grid>
@@ -125,7 +128,6 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry" 
-                       
                        Placeholder=""
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
@@ -170,14 +172,15 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="ConfirmPasswordEntry"
-                       
+                       Text="{Binding ConfirmPassword, Mode=TwoWay}"
                        Placeholder=""
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
                        CharacterSpacing="-0.5"
-                       FontSize="16"/>
-                <!--TextChanged="OnConfirmPasswordChanged"-->
+                       FontSize="16">
+                </Entry>
+                <!--TextChanged="{Binding ConfirmPasswordChanged}"-->
 
                 <!--icons-->
                 <inputLayout:SfTextInputLayout.LeadingView>
@@ -192,10 +195,6 @@
                 <inputLayout:SfTextInputLayout.HelperLabelStyle>
                     <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
                 </inputLayout:SfTextInputLayout.HelperLabelStyle>
-                <!--<inputLayout:SfTextInputLayout.ErrorLabelStyle>
-                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource ErrorTextColor}"/>
-                </inputLayout:SfTextInputLayout.ErrorLabelStyle>-->
-
 
                 <!--indicates the border color while it is normal and focus and error-->
                 <VisualStateManager.VisualStateGroups>
@@ -233,7 +232,6 @@
                 Margin="{OnPlatform '0,50,0,0'}"
                 CornerRadius="10"
                 Command="{Binding GoToSignupPage2Command}"/>
-        <!--This command cannot work properly-->
 
         <!--Log in-->
         <StackLayout Orientation="Horizontal" 
@@ -257,24 +255,6 @@
                     <TapGestureRecognizer Command="{Binding BackToLoginPageCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
-
-            <Button BackgroundColor="White"
-                    Text="Login"
-                    TextColor="#002FA7"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    FontFamily="WorkSansSemiBold"
-                    CharacterSpacing="-0.5"
-                    HorizontalOptions="Start"
-                    HeightRequest="20"
-                    Margin="5,0"
-                    Command="{Binding BackToLoginCommand}"
-                    Padding="0"/>
-            <!--<Label 
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackToLoginCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>-->
         </StackLayout>
 
 

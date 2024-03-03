@@ -2,122 +2,166 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="fitnessStudioMobileApp.Views.SignupPage2"
-             Title="SignupPage2">
-    <StackLayout VerticalOptions="Start" Padding="30,30">
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="SignupPage2"
+             BackgroundColor="{StaticResource MainBackgroundColor}">
+    <StackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
 
         <!--Title Section-->
-        <Frame HasShadow="False" VerticalOptions="Start" BorderColor="White">
+        <Frame HasShadow="False" VerticalOptions="Start" BorderColor="Transparent" BackgroundColor="{StaticResource MainBackgroundColor}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                    <RowDefinition Height="{OnPlatform *}"/>
                 </Grid.RowDefinitions>
                 <Label Text="Hey There,"
-                           TextColor="#402E32"
-                           FontFamily="WorkSansMedium"
-                           CharacterSpacing="-0.5"
-                           FontSize="20"
-                           HorizontalOptions="Center"
-                           Grid.Row="0"></Label>
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansMedium"
+                       CharacterSpacing="-0.5"
+                       FontSize="{OnPlatform 24}"
+                       HorizontalOptions="Center"
+                       Grid.Row="0"/>
                 <Label Text="Please fill in these information"
-                       TextColor="#402E32"
+                       TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansSemiBold"
                        CharacterSpacing="-0.5"
-                       FontSize="24"
+                       FontSize="{OnPlatform 24}"
                        HorizontalOptions="Center"
                        Grid.Row="1"/>
             </Grid>
         </Frame>
 
         <VerticalStackLayout>
+            <!--phone number input box-->
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,50,0,0'}" Hint="Phone Number" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your phone number without '-'" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           HasError="True" ErrorText="Invalid Phone Number" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <!--entry details-->
+                <editors:SfMaskedEntry Placeholder="0123456789"
+                                   MaskType="RegEx"
+                                   Mask=""
+                                   PlaceholderColor="{StaticResource BlurTextColor}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   FontFamily="WorkSansRegular"
+                                   FontSize="16"/>
 
-            <Frame Margin="{OnPlatform '0,20,0,0', Android='0,20,0,0', iOS='0,20,0,0'}" HasShadow="True" Padding="{OnPlatform 7, Android=7, iOS=7}" CornerRadius="{OnPlatform 15}" BackgroundColor="#B7C9E2" HeightRequest="{OnPlatform 50, Android=50, iOS=50} ">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <!--icons-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="phone_number.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
 
-                    <Image Source="phone_number.png"
-                           Grid.Column="0"
-                           HeightRequest="25"
-                           Margin="{OnPlatform '10,0,0,0', Android='10,0,0,0', iOS='10,0,0,0'}"
-                           HorizontalOptions="Start"/>
+                <!--inputLayout hint and helperLabelStyle text color-->
+                <inputLayout:SfTextInputLayout.HintLabelStyle>
+                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HelperLabelStyle>
 
-                    <Entry Placeholder="Phone Number"
-                                           Grid.Column="1"
-                                           TextColor="#402E32"
-                                           PlaceholderColor="#402E32"
-                                           HorizontalOptions="FillAndExpand"
-                                           FontSize="16"
-                                           FontFamily="WorkSansRegular"
-                                           CharacterSpacing="-0.5"
-                                           Margin="{OnPlatform '20,0,0,0', Android='20,0,0,0', iOS='20,0,0,0'}"/>
-                </Grid>
-            </Frame>
+                <!--indicates the border color while it is normal and focus-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Error">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#E53935"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </inputLayout:SfTextInputLayout>
 
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Home Address" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your home address" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                               ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <!--entry details-->
+                <Entry Placeholder=""
+                       PlaceholderColor="{StaticResource BlurTextColor}"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansRegular"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
 
-            <Frame Margin="{OnPlatform '0,20,0,0', Android='0,20,0,0', iOS='0,20,0,0'}" HasShadow="True" Padding="{OnPlatform 7, Android=7, iOS=7}" CornerRadius="{OnPlatform 15}" BackgroundColor="#B7C9E2" HeightRequest="{OnPlatform 50, Android=50, iOS=50} ">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <!--icons-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="home_address.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
 
-                    <Image Source="home_address.png"
-                           Grid.Column="0"
-                           HeightRequest="25"
-                           Margin="{OnPlatform '10,0,0,0', Android='10,0,0,0', iOS='10,0,0,0'}"
-                           HorizontalOptions="Start"/>
+                <!--inputLayout hint and helperLabelStyle text color-->
+                <inputLayout:SfTextInputLayout.HintLabelStyle>
+                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
+                </inputLayout:SfTextInputLayout.HelperLabelStyle>
 
-                    <Entry Placeholder="Home Address"
-                                           Grid.Column="1"
-                                           TextColor="#402E32"
-                                           PlaceholderColor="#402E32"
-                                           HorizontalOptions="FillAndExpand"
-                                           FontSize="16"
-                                           FontFamily="WorkSansRegular"
-                                           CharacterSpacing="-0.5"
-                                           Margin="{OnPlatform '20,0,0,0', Android='20,0,0,0', iOS='20,0,0,0'}"/>
-                </Grid>
-            </Frame>
+                <!--indicates the border color while it is normal and focus-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </inputLayout:SfTextInputLayout>
+
+            <Button Text="Sign Up" 
+                    TextColor="#FFF8EA"
+                    FontSize="20"
+                    FontFamily="WorkSansSemiBold"
+                    CharacterSpacing="-0.5"
+                    BackgroundColor="{StaticResource ActiveButtonBackgroundColor}" 
+                    HeightRequest="{OnPlatform 50}" 
+                    Margin="{OnPlatform '0,50,0,0'}"
+                    
+                    Command="{Binding RegisterCommand}"
+                    CornerRadius="10"/>
+            <!--Clicked="RegisterOnClicked"}"-->
+
+            <StackLayout Orientation="Horizontal" 
+             HorizontalOptions="Center" 
+             Margin="{OnPlatform '0,10,0,0'}"
+             Padding="{OnPlatform '0,7,0,7'}">
+
+                <Label Text="Do you have an account?"
+           TextColor="#402E32"
+           FontFamily="WorkSansMedium"
+           CharacterSpacing="-0.5"
+           FontSize="16"/>
+
+                <Label Text="Login"
+           TextColor="{StaticResource ActiveTextColor}"
+           CharacterSpacing="-0.5"
+           FontFamily="WorkSansSemiBold"
+           FontSize="16"
+           Margin="{OnPlatform '10,0'}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackToLoginPageCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
         </VerticalStackLayout>
-
-        <Button Text="Sign Up" 
-                TextColor="#FFF8EA"
-                FontSize="20"
-                FontFamily="WorkSansSemiBold"
-                CharacterSpacing="-0.5"
-                BackgroundColor="#2F6EF5" 
-                HeightRequest="50" 
-                Margin="{OnPlatform '0,10,0,0'}"
-                Clicked="RegisterOnClicked"
-                CornerRadius="10"/>
-        <!--   Command="{Binding RegisterCommand}"-->
-
-        <StackLayout Orientation="Horizontal" 
-                     HorizontalOptions="Center" 
-                     Margin="{OnPlatform '0,10,0,0'}"
-                     Padding="{OnPlatform '0,7,0,7'}">
-
-            <Label Text="Do you have an account?"
-                   TextColor="#402E32"
-                   FontFamily="WorkSansMedium"
-                   CharacterSpacing="-0.5"
-                   FontSize="16"/>
-
-            <Label Text="Log In"
-                   TextColor="#002FA7"
-                   FontSize="16"
-                   FontAttributes="Bold"
-                   FontFamily="WorkSansSemiBold"
-                   CharacterSpacing="-0.5"
-                   HorizontalOptions="Start"
-                   Padding="10,0,0,0">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackToLoginCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
     </StackLayout>
 </ContentPage>

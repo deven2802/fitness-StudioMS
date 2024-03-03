@@ -16,11 +16,11 @@
 
     <ShellContent
         Title="Login"
-        ContentTemplate="{DataTemplate local:SignupPage}"
-        Route="LoginPage">
-
-        <!--Tab Bar-->
+        ContentTemplate="{DataTemplate local:WelcomePage}"
+        Route="WelcomePage">
     </ShellContent>
+
+    <!--Tab Bar-->
     <TabBar x:Name="NavigationBar" Route="main">
         <Tab Title="Home" Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>

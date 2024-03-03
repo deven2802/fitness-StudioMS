@@ -9,71 +9,78 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
+using System.Runtime.CompilerServices;
 
 namespace fitnessStudioMobileApp.ViewModels
 {
     public partial class SignupPageViewModel : ObservableObject
     {
-        //navigate to other pages command code
+        //navigate to signupPage2
         [RelayCommand]
-        public async void BackToLoginPage()
+        public async Task GoToSignupPage2()
         {
-
+            await Shell.Current.GoToAsync("SignupPage2");
         }
 
+        //navigate to loginPage
+        [RelayCommand]
+        public async Task BackToLoginPage() 
+        {
+            await Shell.Current.GoToAsync("LoginPage");
+        }
 
+        //navigate to homePage
+        [RelayCommand]
+        public async Task Register()
+        {
+            await Shell.Current.GoToAsync("//main");
+        }
+
+        //password validation
         private string _password;
+        private string _confirmPassword;
+
         public string Password
         {
-            get => _password;
+            get { return _password; }
             set
             {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-                CheckPasswordsMatch();
+                if (_password != value)
+                {
+                    _password = value;
+                    OnPropertyChanged();
+                    ConfirmPasswordChanged();
+                }
             }
         }
 
-        private string _confirmPassword;
         public string ConfirmPassword
         {
-            get => _confirmPassword;
+            get { return _confirmPassword;}
             set
             {
-                _confirmPassword = value;
-                OnPropertyChanged(nameof(ConfirmPassword));
-                CheckPasswordsMatch();
+                if (_confirmPassword != value)
+                {
+                    _confirmPassword = value; 
+                    OnPropertyChanged();
+                    ConfirmPasswordChanged();
+                }
             }
         }
 
-        private bool _passwordsMatch;
-        public bool PasswordsMatch
+        private void ConfirmPasswordChanged()
         {
-            get=> _passwordsMatch;
-            set
-            {
-                _passwordsMatch = value;
-                OnPropertyChanged(nameof(PasswordsMatch));
-            }
+            if (!string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ConfirmPassword) && Password != ConfirmPassword)
+                    {
+                //Display error message here
+                    }
         }
 
-        /*public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName = null)
+        protected new virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }*/
-
-        private void CheckPasswordsMatch()
-        {
-            PasswordsMatch = Password == ConfirmPassword;
         }
-
-        //NavigationService Command
-        public ICommand GoToSignupPage2Command { get; }
-
-       
-
-        //Implement INotifyPropertyChanged members here
     }
 }
