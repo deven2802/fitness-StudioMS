@@ -128,8 +128,6 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry" 
-                       Placeholder=""
-                       PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
                        CharacterSpacing="-0.5"
@@ -173,8 +171,6 @@
                 <!--entry details-->
                 <Entry x:Name="ConfirmPasswordEntry"
                        Text="{Binding ConfirmPassword, Mode=TwoWay}"
-                       Placeholder=""
-                       PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
                        CharacterSpacing="-0.5"
@@ -256,10 +252,5 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
-
-
-
-
-
     </StackLayout>
 </ContentPage>

@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:fitnessStudioMobileApp"
              x:Class="fitnessStudioMobileApp.Views.HomePage"
              Shell.NavBarIsVisible="True"
-             Title="HomePage">
+             Title=""
+             BackgroundColor="{StaticResource MainBackgroundColor}">
     <ScrollView>
         
     <VerticalStackLayout VerticalOptions="Start" Padding="30,30">

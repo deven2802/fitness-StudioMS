@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using CommunityToolkit.Maui;
+using Firebase.Auth;
+using Firebase.Auth.Providers;
 
 namespace fitnessStudioMobileApp
 {
@@ -29,6 +31,15 @@ namespace fitnessStudioMobileApp
             
             //add service in .net maui
             builder.Services.AddTransient<SignupPageViewModel>();
+
+            /*builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig()
+            {
+                
+                Providers = new Firebase.Auth.Providers.FirebaseAuthProvider[]
+                {
+                    new EmailProvider()
+                }
+            }));*/
             return builder.Build();
         }
     }

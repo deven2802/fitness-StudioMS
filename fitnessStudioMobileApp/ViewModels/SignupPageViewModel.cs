@@ -36,6 +36,27 @@ namespace fitnessStudioMobileApp.ViewModels
             await Shell.Current.GoToAsync("//main");
         }
 
+        //navigate to forgotPasswordPage
+        [RelayCommand]
+        public async Task OnForgotPasswordPage()
+        {
+            await Shell.Current.GoToAsync("ForgotPasswordPage");
+        }
+
+        //loginPage navigate to homePage
+        [RelayCommand]
+        public async Task Login()
+        {
+            await Shell.Current.GoToAsync("//main");
+        }
+
+        //navigate to signupPage
+        [RelayCommand]
+        public async Task GoToSignupPage()
+        {
+            await Shell.Current.GoToAsync("SignupPage");
+        }
+
         //password validation
         private string _password;
         private string _confirmPassword;

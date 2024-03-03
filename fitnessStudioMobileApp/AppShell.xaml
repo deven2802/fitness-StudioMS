@@ -28,7 +28,7 @@
         <Tab Title="Schedule" Icon="schedule.png">
             <ShellContent ContentTemplate="{DataTemplate local:BookingPage}"/>
         </Tab>
-        <Tab Title="Memberships"  Icon="membership.png">
+        <Tab Title="Packages"  Icon="membership.png">
             <ShellContent ContentTemplate="{DataTemplate local:MembershipPage}"/>
         </Tab>
         <Tab Title="Profile" Icon="profile.png">
