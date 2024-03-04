@@ -41,11 +41,12 @@
                                ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry Placeholder="abc123@gmail.com"
-           PlaceholderColor="{StaticResource BlurTextColor}"
-           TextColor="{StaticResource NormalTextColor}"
-           FontFamily="WorkSansRegular"
-           CharacterSpacing="-0.5"
-           FontSize="16"/>
+                       Text="{Binding userName}"
+                       PlaceholderColor="{StaticResource BlurTextColor}"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontFamily="WorkSansRegular"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
 
                 <!--icons-->
                 <inputLayout:SfTextInputLayout.LeadingView>
@@ -84,6 +85,7 @@
                                ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry"
+                       Text="{Binding userPassword}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
                        CharacterSpacing="-0.5"

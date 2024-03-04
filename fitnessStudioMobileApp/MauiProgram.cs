@@ -5,7 +5,6 @@ using Mopups.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using CommunityToolkit.Maui;
 using Firebase.Auth;
-using Firebase.Auth.Providers;
 
 namespace fitnessStudioMobileApp
 {

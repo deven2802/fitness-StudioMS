@@ -127,6 +127,7 @@
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
+            <!--Register button-->
             <Button Text="Sign Up" 
                     TextColor="#FFF8EA"
                     FontSize="20"
@@ -135,28 +136,26 @@
                     BackgroundColor="{StaticResource ActiveButtonBackgroundColor}" 
                     HeightRequest="{OnPlatform 50}" 
                     Margin="{OnPlatform '0,50,0,0'}"
-                    
-                    Command="{Binding RegisterCommand}"
+                    Command="{Binding RegisterUserCommand}"
                     CornerRadius="10"/>
-            <!--Clicked="RegisterOnClicked"}"-->
 
             <StackLayout Orientation="Horizontal" 
-             HorizontalOptions="Center" 
-             Margin="{OnPlatform '0,10,0,0'}"
-             Padding="{OnPlatform '0,7,0,7'}">
+                         HorizontalOptions="Center" 
+                         Margin="{OnPlatform '0,10,0,0'}"
+                         Padding="{OnPlatform '0,7,0,7'}">
 
                 <Label Text="Do you have an account?"
-           TextColor="#402E32"
-           FontFamily="WorkSansMedium"
-           CharacterSpacing="-0.5"
-           FontSize="16"/>
+                       TextColor="#402E32"
+                       FontFamily="WorkSansMedium"
+                       CharacterSpacing="-0.5"
+                       FontSize="16"/>
 
                 <Label Text="Login"
-           TextColor="{StaticResource ActiveTextColor}"
-           CharacterSpacing="-0.5"
-           FontFamily="WorkSansSemiBold"
-           FontSize="16"
-           Margin="{OnPlatform '10,0'}">
+                       TextColor="{StaticResource ActiveTextColor}"
+                       CharacterSpacing="-0.5"
+                       FontFamily="WorkSansSemiBold"
+                       FontSize="16"
+                       Margin="{OnPlatform '10,0'}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding BackToLoginPageCommand}"/>
                     </Label.GestureRecognizers>

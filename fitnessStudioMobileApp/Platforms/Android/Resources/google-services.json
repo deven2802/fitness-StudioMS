@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965478663342",
+    "project_id": "fitnessstudioms-b48bf",
+    "storage_bucket": "fitnessstudioms-b48bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965478663342:android:2dca5a1e3c9f6ffb51193f",
+        "android_client_info": {
+          "package_name": "com.myapp.fitnessStudioMS"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbQIxyNOIAkyA-A5Wvuz5TrSsXJtOGvLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
