@@ -125,7 +125,7 @@
             </inputLayout:SfTextInputLayout>
 
             <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,5,0,0'}" Hint="Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" 
-                                           HelperText="Please enter your password" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           HelperText="Password must contains at least 6 characters" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry" 
@@ -322,7 +322,6 @@
                 Margin="{OnPlatform '0,30,0,0'}"
                 CornerRadius="10"
                 Command="{Binding RegisterUserCommand}"/>
-        <!-- Command="{Binding GoToSignupPage2Command}"-->
 
         <!--Log in-->
         <StackLayout Orientation="Horizontal" 

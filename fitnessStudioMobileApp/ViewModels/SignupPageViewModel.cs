@@ -33,13 +33,6 @@ namespace fitnessStudioMobileApp.ViewModels
             await Shell.Current.GoToAsync("LoginPage");
         }
 
-        //navigate to homePage
-        /*[RelayCommand]
-        public async Task Register()
-        {
-            await Shell.Current.GoToAsync("//main");
-        }*/
-
         //navigate to forgotPasswordPage
         [RelayCommand]
         public async Task OnForgotPasswordPage()
@@ -47,18 +40,18 @@ namespace fitnessStudioMobileApp.ViewModels
             await Shell.Current.GoToAsync("ForgotPasswordPage");
         }
 
-        //loginPage navigate to homePage
-        /*[RelayCommand]
-        public async Task Login()
-        {
-            await Shell.Current.GoToAsync("//main");
-        }*/
-
         //navigate to signupPage
         [RelayCommand]
         public async Task GoToSignupPage()
         {
             await Shell.Current.GoToAsync("SignupPage");
+        }
+
+        //navigate to forgotPasswordPage
+        [RelayCommand]
+        public async Task OnForgetPasswordPage()
+        {
+            await Shell.Current.GoToAsync("ForgotPasswordPage");
         }
 
         //web APIkey
@@ -105,14 +98,14 @@ namespace fitnessStudioMobileApp.ViewModels
         }
 
         public string Password
-        { 
-            get => password; 
-            set {
+        {
+            get => password;
+            set
+            {
                 password = value;
                 RaisePropertyChanged("Password");
-            } 
+            }
         }
-
 
         //email authentication code
         public Command LoginCommand { get; }
@@ -131,7 +124,7 @@ namespace fitnessStudioMobileApp.ViewModels
             RegisterUserCommand = new Command(RegisterUserCommandTappedAsync);
         }
 
-        //login function didn't work properly
+        //get the registered email and password from the signupPage, and validate the email and password is correct
         private async void LoginCommandTappedAsync(object obj)
         {
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
@@ -146,7 +139,6 @@ namespace fitnessStudioMobileApp.ViewModels
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
-                throw;
             }
         }
 
@@ -163,14 +155,13 @@ namespace fitnessStudioMobileApp.ViewModels
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
                 string token = auth.FirebaseToken;
                 if (token != null)
-                    await App.Current.MainPage.DisplayAlert("Alert", "User Registered successfully", "OK");
+                    await App.Current.MainPage.DisplayAlert("Congratulation!", "User Registered successfully", "OK");
                 await Shell.Current.GoToAsync("LoginPage");
                 
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
-                throw;
             }
         }
 
@@ -180,54 +171,5 @@ namespace fitnessStudioMobileApp.ViewModels
             var data = await firebaseDatabase.GetDataAsync("your/path/here");
             // Use the data as needed in your ViewModel
         }
-
-
-
-        //password validation
-        /*private string _password;
-        private string _confirmPassword;
-
-        public string Password
-        {
-            get { return _password; }
-            set
-            {
-                if (_password != value)
-                {
-                    _password = value;
-                    OnPropertyChanged();
-                    ConfirmPasswordChanged();
-                }
-            }
-        }
-
-        public string ConfirmPassword
-        {
-            get { return _confirmPassword;}
-            set
-            {
-                if (_confirmPassword != value)
-                {
-                    _confirmPassword = value; 
-                    OnPropertyChanged();
-                    ConfirmPasswordChanged();
-                }
-            }
-        }
-
-        private void ConfirmPasswordChanged()
-        {
-            if (!string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ConfirmPassword) && Password != ConfirmPassword)
-                    {
-                //Display error message here
-                    }
-        }
-
-        //public new event PropertyChangedEventHandler PropertyChanged;
-
-        /*protected new virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }*/
     }
 }

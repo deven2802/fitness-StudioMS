@@ -41,7 +41,7 @@
                                ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry Placeholder="abc123@gmail.com"
-                       Text="{Binding userName}"
+                       Text="{Binding UserName}"
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
@@ -85,7 +85,7 @@
                                ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry"
-                       Text="{Binding userPassword}"
+                       Text="{Binding UserPassword}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
                        CharacterSpacing="-0.5"
