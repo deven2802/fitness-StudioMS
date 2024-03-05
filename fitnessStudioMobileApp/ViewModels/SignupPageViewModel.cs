@@ -35,9 +35,10 @@ namespace fitnessStudioMobileApp.ViewModels
 
         //navigate to forgotPasswordPage
         [RelayCommand]
-        public async Task OnForgotPasswordPage()
+        public async Task OnForgetPasswordPage()
         {
-            await Shell.Current.GoToAsync("ForgotPasswordPage");
+            System.Diagnostics.Debug.WriteLine("Navigating to ForgotPasswordPage");
+            await Shell.Current.GoToAsync(nameof(ForgotPasswordPage));
         }
 
         //navigate to signupPage
@@ -47,12 +48,6 @@ namespace fitnessStudioMobileApp.ViewModels
             await Shell.Current.GoToAsync("SignupPage");
         }
 
-        //navigate to forgotPasswordPage
-        [RelayCommand]
-        public async Task OnForgetPasswordPage()
-        {
-            await Shell.Current.GoToAsync("ForgotPasswordPage");
-        }
 
         //web APIkey
         public string webApiKey = "AIzaSyBbQIxyNOIAkyA-A5Wvuz5TrSsXJtOGvLc";
@@ -84,7 +79,7 @@ namespace fitnessStudioMobileApp.ViewModels
             set
             {
                 userPassword = value;
-                RaisePropertyChanged("Password");
+                RaisePropertyChanged("UserPassword");
             }
         }
 

@@ -2,6 +2,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="fitnessStudioMobileApp.Views.SettingPage"
-             Title="SettingPage">
-    
+             Title="SettingPage"
+             BackgroundColor="{StaticResource MainBackgroundColor}">
+    <VerticalStackLayout VerticalOptions="Start">
+        <!--Personal information display here-->
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                    <RowDefinition Height="{OnPlatform *}"/>
+                </Grid.RowDefinitions>
+                <Label Text="Personal Information"
+                       FontSize="{OnPlatform 20}"
+                       FontFamily="WorkSansSemiBold"
+                       CharacterSpacing="-0.5"
+                       TextColor="{StaticResource NormalTextColor}"
+                       Padding="{OnPlatform '15,15,0,15'}"
+                       Grid.Row="0"/>
+
+                <!--Full name display here-->
+                <Frame Grid.Row="1" CornerRadius="0" Padding="{OnPlatform 0}" BorderColor="{StaticResource Gray300}">
+                    <Label Text="Alice Wong Li Li"
+                           FontSize="16"
+                           FontFamily="WorkSansMedium"
+                           CharacterSpacing="-0.5"
+                           TextColor="{StaticResource NormalTextColor}"
+                           Padding="{OnPlatform '15,20'}"/>
+                </Frame>
+
+                <!--email display here-->
+                <Frame Grid.Row="2" CornerRadius="0" Padding="{OnPlatform 0}" BorderColor="Transparent">
+                    <Label Text="Alice Wong Li Li"
+                           FontSize="16"
+                           FontFamily="WorkSansMedium"
+                           CharacterSpacing="-0.5"
+                           TextColor="{StaticResource NormalTextColor}"
+                           Padding="{OnPlatform '15,20'}"/>
+                </Frame>
+            </Grid>
+            
+        </StackLayout>
+
+    </VerticalStackLayout>
 </ContentPage>

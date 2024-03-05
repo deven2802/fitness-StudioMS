@@ -130,18 +130,21 @@
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
-            <!--forgot password-->
-            <Label Text="Forgot Password?"
-                   TextColor="{StaticResource ActiveTextColor}"
-                   FontSize="{OnPlatform 16}"
-                   FontFamily="WorkSansMedium"
-                   CharacterSpacing="-0.5"
-                   HorizontalTextAlignment="End"
-                   Margin="{OnPlatform '0,10,0,0'}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OnForgetPasswordPageCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>
+            <!--forget Password btn cannot worked properly need to be fixed-->
+            <StackLayout>
+                <!--forgot password-->
+                <Label Text="Forgot Password?"
+                       TextColor="{StaticResource ActiveTextColor}"
+                       FontSize="{OnPlatform 16}"
+                       FontFamily="WorkSansMedium"
+                       CharacterSpacing="-0.5"
+                       HorizontalTextAlignment="End"
+                       Margin="{OnPlatform '0,10,0,0'}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnForgetPasswordPage}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
 
             <Button Text="Login" 
                     TextColor="{StaticResource ActiveButtonTextColor}"
