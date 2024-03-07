@@ -9,9 +9,6 @@ public partial class WelcomePage : ContentPage
 
     private async void OnGetStartedClicked(object sender, EventArgs e)
     {
-        var signupPage = new SignupPage();
-
-
         await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
     }
 

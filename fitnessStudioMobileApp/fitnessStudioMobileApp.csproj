@@ -55,6 +55,7 @@
 	  <None Remove="Resources\Fonts\WorkSans-Medium.otf" />
 	  <None Remove="Resources\Fonts\WorkSans-Regular.otf" />
 	  <None Remove="Resources\Fonts\WorkSans-SemiBold.otf" />
+	  <None Remove="Resources\Images\back_button.png" />
 	  <None Remove="Resources\Images\email.png" />
 	  <None Remove="Resources\Images\fitness_welcome_page_image.png" />
 	  <None Remove="Resources\Images\hide_password.png" />

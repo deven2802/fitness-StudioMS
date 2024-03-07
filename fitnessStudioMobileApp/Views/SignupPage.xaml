@@ -92,7 +92,7 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <Entry x:Name="emailEntry" 
-                       Placeholder="abc123@gmail.com"
+                       Placeholder="example@gmail.com"
                        Text="{Binding Email}"
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
@@ -188,13 +188,11 @@
                        CharacterSpacing="-0.5"
                        FontSize="16">
                 </Entry>
-                <!--TextChanged="{Binding ConfirmPasswordChanged}"-->
 
                 <!--icons-->
                 <inputLayout:SfTextInputLayout.LeadingView>
                     <Image Source="password.png"/>
                 </inputLayout:SfTextInputLayout.LeadingView>
-
 
                 <!--inputLayout hint and helperLabelStyle text color-->
                 <inputLayout:SfTextInputLayout.HintLabelStyle>
@@ -236,7 +234,6 @@
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
                 <editors:SfMaskedEntry x:Name="phoneNumberEntry" 
-                                       Text="{Binding PhoneNumber}"
                                        Placeholder="0123456789"
                                        MaskType="RegEx"
                                        Mask=""
