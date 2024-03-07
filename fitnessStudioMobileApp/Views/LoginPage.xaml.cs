@@ -11,9 +11,9 @@ public partial class LoginPage : ContentPage
     }
 
 
-    private async void OnForgetPasswordPage(object sender, EventArgs e)
+    /*private async void OnForgetPasswordPage(object sender, EventArgs e)
     {
         // Navigate to ForgotPasswordPage
         await Shell.Current.GoToAsync($"{nameof(ForgotPasswordPage)}");
-    }
+    }*/
 }

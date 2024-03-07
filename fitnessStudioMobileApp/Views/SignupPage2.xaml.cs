@@ -1,4 +1,5 @@
 using fitnessStudioMobileApp.ViewModels;
+using Syncfusion.Maui.DataForm;
 
 namespace fitnessStudioMobileApp.Views;
 

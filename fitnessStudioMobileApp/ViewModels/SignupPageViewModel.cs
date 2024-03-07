@@ -1,4 +1,5 @@
 ﻿using fitnessStudioMobileApp.Views;
+using fitnessStudioMobileApp.Model;
 using fitnessStudioMobileApp.Services;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,92 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Syncfusion.Maui.DataForm;
+using Syncfusion.Maui.Inputs;
+using core = Syncfusion.Maui.Core;
+using Syncfusion.Maui.Core;
 using Microsoft.Maui.Controls;
 using System.Runtime.CompilerServices;
 using Firebase.Auth;
 using Newtonsoft.Json;
 using CommunityToolkit.Maui.Views;
+using System.ComponentModel.DataAnnotations;
 
 namespace fitnessStudioMobileApp.ViewModels
 {
     public partial class SignupPageViewModel : ObservableObject, INotifyPropertyChanged
     {
+        private void ValidateText()
+        {
+            this.FieldNullCheck(FirstNameFieldMobile);
+            this.FieldNullCheck(PhoneNumberFieldMobile);
+            this.FieldNullCheck(PasswordFieldMobile);
+            this.FieldNullCheck(ConfirmPasswordFieldMobile);
+            this.FieldNullCheck(EmailFieldMobile);
+            ValidatePhoneNumber();
+            ValidateEmailAddress();
+            ValidatePasswordField();
+        }
+
+        private void ValidatePasswordField()
+        {
+            if (ConfirmPasswordFieldMobile.IsEnabled && ConfirmPasswordFieldMobile.Text != PasswordFieldMobile.Text)
+            {
+                ConfirmPasswordFieldMobile.HasError = true;
+            }
+            else
+            {
+                ConfirmPasswordFieldMobile.HasError = false;
+            }
+
+            if (string.IsNullOrEmpty(PasswordFieldMobile.Text) || PasswordFieldMobile.Text?.Length < 5 || PasswordFieldMobile.Text?.Length > 8)
+            {
+                PasswordFieldMobile.HasError = true;
+            }
+            else
+            {
+                PasswordFieldMobile.HasError = false;
+            }
+        }
+
+        private void ValidatePhoneNumber()
+        {
+            if (!double.TryParse(PhoneNumberFieldMobile.Text, out double result))
+            {
+                PhoneNumberFieldMobile.HasError = true;
+            }
+            else
+            {
+                PhoneNumberFieldMobile.HasError = false;
+            }
+        }
+
+        private void ValidateEmailAddress()
+        {
+            if (EmailFieldMobile.Text == null || !EmailFieldMobile.Text.Contains("@") || !EmailFieldMobile.Text.Contains("."))
+            {
+                EmailFieldMobile.HasError = true;
+            }
+            else
+            {
+                EmailFieldMobile.HasError = false;
+            }
+        }
+
+        private void FieldNullCheck(core.SfTextInputLayout inputLayout)
+        {
+            if (string.IsNullOrEmpty(inputLayout.Text))
+            {
+                inputLayout.HasError = true;
+            }
+            else
+            {
+                inputLayout.HasError = false;
+            }
+        }
+
+
+
         //navigate to signupPage2
         [RelayCommand]
         public async Task GoToSignupPage2()
@@ -82,13 +159,14 @@ namespace fitnessStudioMobileApp.ViewModels
                 RaisePropertyChanged("UserPassword");
             }
         }
-
+        
         public string Email
         { 
             get => email; 
             set {
                 email = value;
                 RaisePropertyChanged("Email");
+                ValidateText();
             }  
         }
 
@@ -99,6 +177,7 @@ namespace fitnessStudioMobileApp.ViewModels
             {
                 password = value;
                 RaisePropertyChanged("Password");
+                ValidateText();
             }
         }
 
@@ -117,7 +196,28 @@ namespace fitnessStudioMobileApp.ViewModels
             RegisterCommand = new Command(RegisterCommandTappedAsync);
             LoginCommand = new Command(LoginCommandTappedAsync);
             RegisterUserCommand = new Command(RegisterUserCommandTappedAsync);
+
+            this.SignInFormModel = new SignInFormModel();
         }
+
+        /// <summary>
+        /// Gets or sets the sign in model.
+        /// </summary>
+        public SignInFormModel SignInFormModel { get; set; }
+
+        public SfTextInputLayout FirstNameFieldMobile { get; private set; }
+
+        public SfTextInputLayout EmailFieldMobile { get; private set; }
+
+        public SfTextInputLayout PasswordFieldMobile { get; private set; }
+
+        public SfTextInputLayout ConfirmPasswordFieldMobile { get; private set; }
+
+        public SfTextInputLayout PhoneNumberFieldMobile { get; private set; }
+
+        public SfTextInputLayout HomeAddressFieldMobile { get; private set; }
+
+
 
         //get the registered email and password from the signupPage, and validate the email and password is correct
         private async void LoginCommandTappedAsync(object obj)

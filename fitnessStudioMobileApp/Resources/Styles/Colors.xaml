@@ -21,6 +21,7 @@
     <!--color theme that is used in this mobile app-->
     <Color x:Key="NormalTextColor">#402E32</Color>
     <Color x:Key="ErrorTextColor">#E53935</Color>
+    <Color x:Key="ValidTextColor">#38E79F</Color>
     <Color x:Key="MainBackgroundColor">#E5FFFF </Color>
     <Color x:Key="ActiveButtonBackgroundColor">#3EA99F</Color>
     <Color x:Key="ActiveButtonTextColor">#FFF8EA</Color>

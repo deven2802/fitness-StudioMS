@@ -5,162 +5,56 @@
              xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
              xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="SignupPage2"
              BackgroundColor="{StaticResource MainBackgroundColor}">
     <StackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
+        <dataForm:SfDataForm x:Name="signupPageDataForm"
+                             LayoutType="TextInputLayout"
+                             MinimumHeightRequest="700"
+                             DataObject="{Binding SignInFormModel}"
+                             ValidationMode="PropertyChanged">
+            <dataForm:SfDataForm.ErrorLabelTextStyle>
+                <dataForm:DataFormTextStyle TextColor="{StaticResource ErrorTextColor}"
+                                            FontFamily="WorkSansRegular"
+                                            FontSize="14"/>
+            </dataForm:SfDataForm.ErrorLabelTextStyle>
+            <dataForm:SfDataForm.ValidMessageLabelTextStyle>
+                <dataForm:DataFormTextStyle TextColor="{StaticResource ValidTextColor}"
+                                            FontFamily="WorkSansRegular"
+                                            FontSize="14"/>
+            </dataForm:SfDataForm.ValidMessageLabelTextStyle>
+            <dataForm:SfDataForm.TextInputLayoutSettings>
+                <dataForm:TextInputLayoutSettings ShowHelperText="True" ContainerType="Outlined"
+                                                  FocusedStroke="#3EA99F" Stroke="#3EA99F" 
+                                                  FocusedStrokeThickness="2" UnfocusedStrokeThickness="1.5" OutlineCornerRadius="15">
+                    <dataForm:TextInputLayoutSettings.HelperTextStyle>
+                        <dataForm:DataFormTextStyle FontFamily="WorkSansRegular" FontSize="14" TextColor="{StaticResource NormalTextColor}"/>
+                    </dataForm:TextInputLayoutSettings.HelperTextStyle>
+                </dataForm:TextInputLayoutSettings>
+            </dataForm:SfDataForm.TextInputLayoutSettings>
+            
+            <dataForm:SfDataForm.Items>
+                <dataForm:DataFormTextItem FieldName="FullName" 
+                                           ShowLeadingView="True">
+                    <dataForm:DataFormTextItem.LeadingView>
+                        <Image Source="profile.png"/>
+                    </dataForm:DataFormTextItem.LeadingView>
+                </dataForm:DataFormTextItem>
+                <dataForm:DataFormPasswordItem FieldName="Password"
+                                               EnablePasswordVisibilityToggle="True"
+                                               ShowLeadingView="True">
+                    <dataForm:DataFormPasswordItem.LeadingView>
+                        <Image Source="password.png" BackgroundColor="Pink"/>
+                    </dataForm:DataFormPasswordItem.LeadingView>
+                </dataForm:DataFormPasswordItem>
 
-        <!--Title Section-->
-        <Frame HasShadow="False" VerticalOptions="Start" BorderColor="Transparent" BackgroundColor="{StaticResource MainBackgroundColor}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="{OnPlatform *}"/>
-                    <RowDefinition Height="{OnPlatform *}"/>
-                </Grid.RowDefinitions>
-                <Label Text="Hey There,"
-                       TextColor="{StaticResource NormalTextColor}"
-                       FontFamily="WorkSansMedium"
-                       CharacterSpacing="-0.5"
-                       FontSize="{OnPlatform 24}"
-                       HorizontalOptions="Center"
-                       Grid.Row="0"/>
-                <Label Text="Please fill in these information"
-                       TextColor="{StaticResource NormalTextColor}"
-                       FontFamily="WorkSansSemiBold"
-                       CharacterSpacing="-0.5"
-                       FontSize="{OnPlatform 24}"
-                       HorizontalOptions="Center"
-                       Grid.Row="1"/>
-            </Grid>
-        </Frame>
+            </dataForm:SfDataForm.Items>
+            
+            
+            
+        </dataForm:SfDataForm>
 
-        <VerticalStackLayout>
-            <!--phone number input box-->
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,50,0,0'}" Hint="Phone Number" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your phone number without '-'" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
-                                           HasError="True" ErrorText="Invalid Phone Number" 
-                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
-                <!--entry details-->
-                <editors:SfMaskedEntry Placeholder="0123456789"
-                                   MaskType="RegEx"
-                                   Mask=""
-                                   PlaceholderColor="{StaticResource BlurTextColor}"
-                                   TextColor="{StaticResource NormalTextColor}"
-                                   FontFamily="WorkSansRegular"
-                                   FontSize="16"/>
-
-                <!--icons-->
-                <inputLayout:SfTextInputLayout.LeadingView>
-                    <Image Source="phone_number.png"/>
-                </inputLayout:SfTextInputLayout.LeadingView>
-
-                <!--inputLayout hint and helperLabelStyle text color-->
-                <inputLayout:SfTextInputLayout.HintLabelStyle>
-                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
-                </inputLayout:SfTextInputLayout.HintLabelStyle>
-                <inputLayout:SfTextInputLayout.HelperLabelStyle>
-                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
-                </inputLayout:SfTextInputLayout.HelperLabelStyle>
-
-                <!--indicates the border color while it is normal and focus-->
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="#3EA99F"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Focused">
-                                <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="#3EA99F"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Error">
-                                <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="#E53935"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-            </inputLayout:SfTextInputLayout>
-
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Home Address" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your home address" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
-                               ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
-                <!--entry details-->
-                <Entry Placeholder=""
-                       PlaceholderColor="{StaticResource BlurTextColor}"
-                       TextColor="{StaticResource NormalTextColor}"
-                       FontFamily="WorkSansRegular"
-                       CharacterSpacing="-0.5"
-                       FontSize="16"/>
-
-                <!--icons-->
-                <inputLayout:SfTextInputLayout.LeadingView>
-                    <Image Source="home_address.png"/>
-                </inputLayout:SfTextInputLayout.LeadingView>
-
-                <!--inputLayout hint and helperLabelStyle text color-->
-                <inputLayout:SfTextInputLayout.HintLabelStyle>
-                    <inputLayout:LabelStyle FontSize="14" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
-                </inputLayout:SfTextInputLayout.HintLabelStyle>
-                <inputLayout:SfTextInputLayout.HelperLabelStyle>
-                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
-                </inputLayout:SfTextInputLayout.HelperLabelStyle>
-
-                <!--indicates the border color while it is normal and focus-->
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="#3EA99F"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Focused">
-                                <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="#3EA99F"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-            </inputLayout:SfTextInputLayout>
-
-            <!--Register button-->
-            <Button Text="Sign Up" 
-                    TextColor="#FFF8EA"
-                    FontSize="20"
-                    FontFamily="WorkSansSemiBold"
-                    CharacterSpacing="-0.5"
-                    BackgroundColor="{StaticResource ActiveButtonBackgroundColor}" 
-                    HeightRequest="{OnPlatform 50}" 
-                    Margin="{OnPlatform '0,50,0,0'}"
-                    Command="{Binding RegisterUserCommand}"
-                    CornerRadius="10"/>
-
-            <StackLayout Orientation="Horizontal" 
-                         HorizontalOptions="Center" 
-                         Margin="{OnPlatform '0,10,0,0'}"
-                         Padding="{OnPlatform '0,7,0,7'}">
-
-                <Label Text="Do you have an account?"
-                       TextColor="#402E32"
-                       FontFamily="WorkSansMedium"
-                       CharacterSpacing="-0.5"
-                       FontSize="16"/>
-
-                <Label Text="Login"
-                       TextColor="{StaticResource ActiveTextColor}"
-                       CharacterSpacing="-0.5"
-                       FontFamily="WorkSansSemiBold"
-                       FontSize="16"
-                       Margin="{OnPlatform '10,0'}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BackToLoginPageCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-        </VerticalStackLayout>
     </StackLayout>
 </ContentPage>
