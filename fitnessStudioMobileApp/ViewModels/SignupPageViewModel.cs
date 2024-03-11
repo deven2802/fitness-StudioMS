@@ -111,7 +111,7 @@ namespace fitnessStudioMobileApp.ViewModels
             RegisterCommand = new Command(RegisterCommandTappedAsync);
             LoginCommand = new Command(LoginCommandTappedAsync);
             RegisterUserCommand = new Command(RegisterUserCommandTappedAsync);
-            ButtonSendLinkCommand = new Command(ButtonSendLinkTappedAsync);
+            //ButtonSendLinkCommand = new Command(ButtonSendLinkTappedAsync);
         }
 
         //get the registered email and password from the signupPage, and validate the email and password is correct

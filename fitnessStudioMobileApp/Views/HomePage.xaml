@@ -1,163 +1,203 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
              xmlns:local="clr-namespace:fitnessStudioMobileApp"
              x:Class="fitnessStudioMobileApp.Views.HomePage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              Shell.NavBarIsVisible="True"
              Title=""
              BackgroundColor="{StaticResource MainBackgroundColor}">
     <ScrollView>
-        
-    <VerticalStackLayout VerticalOptions="Start" Padding="30,30">
+        <VerticalStackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
+            <!--title section display here-->
             <HorizontalStackLayout>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="{OnPlatform Auto}"/>
+                        <ColumnDefinition Width="{OnPlatform 170}"/>
                     </Grid.ColumnDefinitions>
                     <Label Text="Announcement"
-                            FontSize="24"
-                            FontAttributes="Bold"
+                           FontSize="{OnPlatform 24}"
+                           FontFamily="WorkSansMedium"
+                           CharacterSpacing="-0.5"
+                           TextColor="{StaticResource NormalTextColor}"
                            HorizontalOptions="Start"
                            Grid.Column="0"/>
 
                     <Label Text="See All"
-                           FontSize="16"
-                           FontAttributes="Bold"
+                           FontSize="{OnPlatform 16}"
+                           FontFamily="WorkSansRegular"
+                           TextColor="{StaticResource NormalTextColor}"
+                           CharacterSpacing="-0.5"
                            Grid.Column="1"
                            HorizontalOptions="End"
-                           VerticalOptions="Center"/>
+                           VerticalOptions="Center"></Label>
                 </Grid>
-                
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout Margin="{OnPlatform '0,20,0,0'}">
-                <Frame HeightRequest="{OnPlatform 200}" WidthRequest="{OnPlatform 200}" Padding="0" Margin="{OnPlatform '0,0,10,0'}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+            <!--announcement details display here-->
+            <listView:SfListView x:Name="AnnouncementListView"
+                                 Orientation="Horizontal"
+                                 ScrollBarVisibility="Always"
+                                 MaximumHeightRequest="{OnPlatform 220}"
+                                 ItemSize="{OnPlatform 170}"
+                                 ItemSpacing="{OnPlatform '0,20,10,10'}"
+                                 ItemsSource="{Binding AnnouncementInfo}">
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{OnPlatform 100}"/>
+                                <RowDefinition Height="{OnPlatform Auto}"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding AnnouncementImage}" Grid.Row="0" BackgroundColor="White" Aspect="AspectFit" />
+                            <Frame Grid.Row="1" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource Gray200}">
+                                <Label Text="{Binding AnnouncementDetail}" Grid.Row="1" TextColor="{StaticResource NormalTextColor}" FontFamily="WorkSansRegular" FontSize="16"/>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
 
-                        <Image Source="imagepath.png" Grid.Row="0" BackgroundColor="Azure"/>
-                        <Label Text="Announcement Display Here"
-                           FontSize="16"
-                           TextColor="Black"
-                           Grid.Row="1"/>
-                    </Grid>
-                </Frame>
-
-                <Frame HeightRequest="{OnPlatform 200}" WidthRequest="{OnPlatform 200}" Padding="0">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Image Source="imagepath.png" Aspect="AspectFit" Grid.Row="0" BackgroundColor="Azure"/>
-                        <Label Text="Announcement Display Here"
-                           FontSize="16"
-                           TextColor="Black"
-                           Grid.Row="1"/>
-                    </Grid>
-                </Frame>
-            </HorizontalStackLayout>
-
-            <VerticalStackLayout Margin="{OnPlatform '0,20,0,0'}">
+            <!--title section display here-->
+            <VerticalStackLayout Margin="{OnPlatform 0}">
                 <HorizontalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition Width="{OnPlatform *}"/>
+                            <ColumnDefinition Width="{OnPlatform 170}"/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Explore Classes"
-                           FontSize="24"
+                               FontSize="{OnPlatform 24}"
                                Grid.Column="0"
-                           FontAttributes="Bold"/>
+                               FontFamily="WorkSansMedium"
+                               CharacterSpacing="-0.5"
+                               TextColor="{StaticResource NormalTextColor}"/>
                         <Label Text="See All"
-                               FontSize="16"
+                               FontSize="{OnPlatform 16}"
                                Grid.Column="1"
-                               FontAttributes="Bold"
+                               FontFamily="WorkSansRegular"
                                VerticalOptions="Center"
-                               HorizontalOptions="End"/>
+                               HorizontalOptions="End">
+                        </Label>
                     </Grid>
-                    
-                    
                 </HorizontalStackLayout>
-                <Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="Yoga"
-                           TextColor="Black"
-                           FontSize="20"
-                               Grid.Row="0"
-                           FontAttributes="Bold"/>
-                        <Label Text="5:00pm - 6:00pm"
-                           TextColor="Black"
-                           FontSize="16"
-                               Margin="{OnPlatform '0,5,0,5'}"
-                               Grid.Row="1"/>
-                        <Label Text="Coach: Wong Li Li"
-                               TextColor="Black"
-                               FontSize="16"
-                               Grid.Row="2"/>
-                    </Grid>
-                </Frame>
+                
+                <!--classes list view display here-->
+                <listView:SfListView x:Name="AvailableClass"
+                                     Orientation="Vertical"
+                                     ItemSpacing="{OnPlatform '0,15'}"
+                                     ItemsSource="{Binding ClassInfo}">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame x:Name="ClassFrame" CornerRadius="15" HasShadow="False">
+                                <StackLayout>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{OnPlatform Auto}"/>
+                                            <RowDefinition Height="{OnPlatform Auto}"/>
+                                            <RowDefinition Height="{OnPlatform Auto}"/>
 
-                <Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="Yoga"
-                           TextColor="Black"
-                           FontSize="20"
-                               Grid.Row="0"
-                           FontAttributes="Bold"/>
-                        <Label Text="5:00pm - 6:00pm"
-                           TextColor="Black"
-                           FontSize="16"
-                               Margin="{OnPlatform '0,5,0,5'}"
-                               Grid.Row="1"/>
-                        <Label Text="Coach: Wong Li Li"
-                               TextColor="Black"
-                               FontSize="16"
-                               Grid.Row="2"/>
-                    </Grid>
-                </Frame>
-
-                <Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="Yoga"
-                           TextColor="Black"
-                           FontSize="20"
-                               Grid.Row="0"
-                           FontAttributes="Bold"/>
-                        <Label Text="5:00pm - 6:00pm"
-                           TextColor="Black"
-                           FontSize="16"
-                               Margin="{OnPlatform '0,5,0,5'}"
-                               Grid.Row="1"/>
-                        <Label Text="Coach: Wong Li Li"
-                               TextColor="Black"
-                               FontSize="16"
-                               Grid.Row="2"/>
-                    </Grid>
-                </Frame>
+                                        </Grid.RowDefinitions>
+                                        <!--Class name display here-->
+                                        <Label Text="{Binding ClassName}"
+                                                   TextColor="{StaticResource NormalTextColor}"
+                                                   FontSize="20"
+                                                   FontFamily="WorkSansRegular"
+                                                   Grid.Row="0"/>
+                                        <!--Class time display here-->
+                                        <Label Text="{Binding ClassTime}"
+                                                   TextColor="{StaticResource NormalTextColor}"
+                                                   FontSize="16"
+                                                   FontFamily="WorkSansRegular"
+                                                   Grid.Row="1"/>
+                                        <!--Coach that teach that class display here-->
+                                        <Label Text="{Binding ClassTime}"
+                                                   TextColor="{StaticResource NormalTextColor}"
+                                                   FontSize="16"
+                                                   FontFamily="WorkSansRegular"
+                                                   Grid.Row="2"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
 
             </VerticalStackLayout>
+            <!--<Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="Yoga"
+           TextColor="Black"
+           FontSize="20"
+               Grid.Row="0"
+           FontAttributes="Bold"/>
+        <Label Text="5:00pm - 6:00pm"
+           TextColor="Black"
+           FontSize="16"
+               Margin="{OnPlatform '0,5,0,5'}"
+               Grid.Row="1"/>
+        <Label Text="Coach: Wong Li Li"
+               TextColor="Black"
+               FontSize="16"
+               Grid.Row="2"/>
+    </Grid>
+</Frame>
 
+<Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="Yoga"
+           TextColor="Black"
+           FontSize="20"
+               Grid.Row="0"
+           FontAttributes="Bold"/>
+        <Label Text="5:00pm - 6:00pm"
+           TextColor="Black"
+           FontSize="16"
+               Margin="{OnPlatform '0,5,0,5'}"
+               Grid.Row="1"/>
+        <Label Text="Coach: Wong Li Li"
+               TextColor="Black"
+               FontSize="16"
+               Grid.Row="2"/>
+    </Grid>
+</Frame>
+
+<Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="Yoga"
+           TextColor="Black"
+           FontSize="20"
+               Grid.Row="0"
+           FontAttributes="Bold"/>
+        <Label Text="5:00pm - 6:00pm"
+           TextColor="Black"
+           FontSize="16"
+               Margin="{OnPlatform '0,5,0,5'}"
+               Grid.Row="1"/>
+        <Label Text="Coach: Wong Li Li"
+               TextColor="Black"
+               FontSize="16"
+               Grid.Row="2"/>
+    </Grid>
+</Frame>-->
 
     </VerticalStackLayout>
     </ScrollView>
