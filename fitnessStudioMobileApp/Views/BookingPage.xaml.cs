@@ -1,13 +1,12 @@
 using System.Globalization;
 using Color = Microsoft.Maui.Graphics.Color;
-//using SampleBrowser.Maui.Base;
 using System.Drawing;
 
 namespace fitnessStudioMobileApp.Views;
 
 public partial class BookingPage : ContentPage
 {
-    private string timeSlot = string.Empty;
+    //private string timeSlot = string.Empty;
 
     public BookingPage()
 	{
@@ -21,7 +20,7 @@ public partial class BookingPage : ContentPage
     // <summary>
     // Initializes a new instance of the <see cref="Year" /> class.
     // </summary>
-
+    /*
 #if MACCATALYST
             this.border.IsVisible = true;
             this.border.Stroke = Color.FromArgb("#E6E6E6");
@@ -87,7 +86,7 @@ public partial class BookingPage : ContentPage
         this.timeSlot = string.Empty;
     }
     */
-
+    /*
     /// <summary>
     /// Update the UI based on calendar selected date.
     /// </summary>
@@ -142,7 +141,7 @@ public partial class BookingPage : ContentPage
 #endif
     }
     */
-
+    /*
     /// <summary>
     /// Book the appointment on selected date and time slot.
     /// </summary>
@@ -199,7 +198,7 @@ public partial class BookingPage : ContentPage
         }
 #endif
     }*/
-
+    /*
     /// <summary>
     /// Update the UI based on selected time slot.
     /// </summary>
@@ -228,6 +227,7 @@ public partial class BookingPage : ContentPage
             unPressedbutton.TextColor = Colors.Black;
             unPressedbutton.Background = Colors.White;
         }
+    */
     }
 }
 	

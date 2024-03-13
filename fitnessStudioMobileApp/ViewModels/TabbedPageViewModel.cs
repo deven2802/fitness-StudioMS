@@ -37,6 +37,7 @@ namespace fitnessStudioMobileApp.ViewModels
             }
         }
 
+        //display the announcement info in the home page starts//
         #region Fields
 
         private ObservableCollection<AnnouncementInfo>? announcementInfo;
@@ -73,11 +74,35 @@ namespace fitnessStudioMobileApp.ViewModels
 
         private void GenerateSource()
         {
+            //announcement respository
             AnnouncementInfoRespository announcementinfo = new();
             announcementInfo = announcementinfo.GetAnnouncementInfo();
             announcementInfo1 = announcementinfo.GetAnnouncementInfo1();
+
+            //class respository
+            ClassInfoRespository classinfo = new();
+            classInfo = classinfo.GetClassInfo();
         }
 
         #endregion
+        //display the announcement in the home page ends
+
+        //display the classes in the home page starts
+        #region Fields
+
+        private ObservableCollection<ClassInfo>? classInfo;
+
+        #endregion
+
+        #region Properties
+
+        public ObservableCollection<ClassInfo>? ClassInfo
+        {
+            get { return classInfo; }
+            set { this.classInfo = value; }
+        }
+
+        #endregion
+        //display the classes in the home page ends
     }
 }

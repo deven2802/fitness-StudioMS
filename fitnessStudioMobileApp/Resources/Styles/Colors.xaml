@@ -31,6 +31,7 @@
     <Color x:Key="ActiveTextColor">#002FA7</Color>
     <Color x:Key="NavBarBackgroundColor">#E0FFFF</Color>
     <Color x:Key="TabBarSelectedTitleColor">#3EA99F</Color>
+    <Color x:Key="FrameBackgroundColor">#338080</Color>
     <Color x:Key="Primary">#512BD4</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>

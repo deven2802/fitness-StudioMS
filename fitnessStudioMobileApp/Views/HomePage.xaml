@@ -6,13 +6,13 @@
              x:Class="fitnessStudioMobileApp.Views.HomePage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
-             Shell.NavBarIsVisible="True"
+             Shell.NavBarIsVisible="False"
              Title=""
              BackgroundColor="{StaticResource MainBackgroundColor}">
     <ScrollView>
-        <VerticalStackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
+        <VerticalStackLayout VerticalOptions="Start" >
             <!--title section display here-->
-            <HorizontalStackLayout>
+            <HorizontalStackLayout Padding="{OnPlatform '30,30,0,20'}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{OnPlatform Auto}"/>
@@ -38,12 +38,14 @@
             </HorizontalStackLayout>
 
             <!--announcement details display here-->
+            <StackLayout Padding="{OnPlatform '10,0,0,0'}">
+                
             <listView:SfListView x:Name="AnnouncementListView"
                                  Orientation="Horizontal"
                                  ScrollBarVisibility="Always"
-                                 MaximumHeightRequest="{OnPlatform 220}"
+                                 MaximumHeightRequest="{OnPlatform 180}"
                                  ItemSize="{OnPlatform 170}"
-                                 ItemSpacing="{OnPlatform '0,20,10,10'}"
+                                 ItemSpacing="{OnPlatform '0,0,10,0'}"
                                  ItemsSource="{Binding AnnouncementInfo}">
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
@@ -53,21 +55,22 @@
                                 <RowDefinition Height="{OnPlatform Auto}"/>
                             </Grid.RowDefinitions>
                             <Image Source="{Binding AnnouncementImage}" Grid.Row="0" BackgroundColor="White" Aspect="AspectFit" />
-                            <Frame Grid.Row="1" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource Gray200}">
-                                <Label Text="{Binding AnnouncementDetail}" Grid.Row="1" TextColor="{StaticResource NormalTextColor}" FontFamily="WorkSansRegular" FontSize="16"/>
+                            <Frame Grid.Row="1" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource FrameBackgroundColor}">
+                                <Label Text="{Binding AnnouncementDetail}" Grid.Row="1" TextColor="{StaticResource ActiveButtonTextColor}" LineBreakMode="WordWrap" FontFamily="WorkSansRegular" FontSize="{OnPlatform 16}" Padding="{OnPlatform 3}"/>
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
             </listView:SfListView>
+            </StackLayout>
 
             <!--title section display here-->
             <VerticalStackLayout Margin="{OnPlatform 0}">
-                <HorizontalStackLayout>
+                <HorizontalStackLayout Padding="{OnPlatform '30,0,0,0'}" Margin="{OnPlatform '0,0,0,20'}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{OnPlatform *}"/>
-                            <ColumnDefinition Width="{OnPlatform 170}"/>
+                            <ColumnDefinition Width="{OnPlatform Auto}"/>
+                            <ColumnDefinition Width="{OnPlatform 165}"/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Explore Classes"
                                FontSize="{OnPlatform 24}"
@@ -84,121 +87,70 @@
                         </Label>
                     </Grid>
                 </HorizontalStackLayout>
-                
+
                 <!--classes list view display here-->
-                <listView:SfListView x:Name="AvailableClass"
+                <listView:SfListView x:Name="AvailableClassListView"
                                      Orientation="Vertical"
-                                     ItemSpacing="{OnPlatform '0,15'}"
+                                     AutoFitMode="DynamicHeight"
+                                     ScrollBarVisibility="Never"
                                      ItemsSource="{Binding ClassInfo}">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <Frame x:Name="ClassFrame" CornerRadius="15" HasShadow="False">
-                                <StackLayout>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="{OnPlatform Auto}"/>
-                                            <RowDefinition Height="{OnPlatform Auto}"/>
-                                            <RowDefinition Height="{OnPlatform Auto}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{OnPlatform *}"/>
+                                    <RowDefinition Height="{OnPlatform 2}"/>
+                                </Grid.RowDefinitions>
+                                <Frame x:Name="ClassFrame" Grid.Row="0" CornerRadius="0" HasShadow="False"  Padding="{OnPlatform 15}" Margin="{OnPlatform '0,0,0,0'}"
+                                       BackgroundColor="{StaticResource FrameBackgroundColor}" VerticalOptions="Start" BorderColor="Transparent">
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="{OnPlatform *}"/>
+                                                <ColumnDefinition Width="{OnPlatform Auto}"/>
+                                            </Grid.ColumnDefinitions>
+                                            <VerticalStackLayout Grid.Column="0">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="{OnPlatform Auto}"/>
+                                                        <RowDefinition Height="{OnPlatform Auto}"/>
+                                                    </Grid.RowDefinitions>
+                                                    <!--Class name display here-->
+                                                    <Label Text="{Binding ClassName}"
+                                                                   TextColor="{StaticResource ActiveButtonTextColor}"
+                                                                   FontSize="20"
+                                                                   FontFamily="WorkSansRegular"
+                                                                   Grid.Row="0"/>
+                                                    <!--Class time display here-->
+                                                    <Label Text="{Binding CoachName}"
+                                                                TextColor="{StaticResource ActiveButtonTextColor}"
+                                                                FontSize="16"
+                                                                FontFamily="WorkSansRegular"
+                                                           Margin="0,5"
+                                                                Grid.Row="1"/>
+                                                </Grid>
+                                            </VerticalStackLayout>
 
-                                        </Grid.RowDefinitions>
-                                        <!--Class name display here-->
-                                        <Label Text="{Binding ClassName}"
-                                                   TextColor="{StaticResource NormalTextColor}"
-                                                   FontSize="20"
-                                                   FontFamily="WorkSansRegular"
-                                                   Grid.Row="0"/>
-                                        <!--Class time display here-->
-                                        <Label Text="{Binding ClassTime}"
-                                                   TextColor="{StaticResource NormalTextColor}"
-                                                   FontSize="16"
-                                                   FontFamily="WorkSansRegular"
-                                                   Grid.Row="1"/>
-                                        <!--Coach that teach that class display here-->
-                                        <Label Text="{Binding ClassTime}"
-                                                   TextColor="{StaticResource NormalTextColor}"
-                                                   FontSize="16"
-                                                   FontFamily="WorkSansRegular"
-                                                   Grid.Row="2"/>
-                                    </Grid>
-                                </StackLayout>
-                            </Frame>
+                                            <Label Text="{Binding ClassTime}"
+                                                    TextColor="{StaticResource ActiveButtonTextColor}"
+                                                    FontSize="16"
+                                                    FontFamily="WorkSansRegular"
+                                                   VerticalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Center"
+                                                   Grid.Column="1"/>
+                                            <!--Coach that teach that class display here-->
+                                        </Grid>
+
+                                    </StackLayout>
+                                </Frame>
+                                <BoxView Grid.Row="1" Color="{StaticResource Gray500}" HeightRequest="1" VerticalOptions="Center" Margin="0,0,0,0"/>
+                            </Grid>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
-
             </VerticalStackLayout>
-            <!--<Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Text="Yoga"
-           TextColor="Black"
-           FontSize="20"
-               Grid.Row="0"
-           FontAttributes="Bold"/>
-        <Label Text="5:00pm - 6:00pm"
-           TextColor="Black"
-           FontSize="16"
-               Margin="{OnPlatform '0,5,0,5'}"
-               Grid.Row="1"/>
-        <Label Text="Coach: Wong Li Li"
-               TextColor="Black"
-               FontSize="16"
-               Grid.Row="2"/>
-    </Grid>
-</Frame>
-
-<Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Text="Yoga"
-           TextColor="Black"
-           FontSize="20"
-               Grid.Row="0"
-           FontAttributes="Bold"/>
-        <Label Text="5:00pm - 6:00pm"
-           TextColor="Black"
-           FontSize="16"
-               Margin="{OnPlatform '0,5,0,5'}"
-               Grid.Row="1"/>
-        <Label Text="Coach: Wong Li Li"
-               TextColor="Black"
-               FontSize="16"
-               Grid.Row="2"/>
-    </Grid>
-</Frame>
-
-<Frame Margin="{OnPlatform '0,20,0,0'}" HeightRequest="{OnPlatform 120}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Text="Yoga"
-           TextColor="Black"
-           FontSize="20"
-               Grid.Row="0"
-           FontAttributes="Bold"/>
-        <Label Text="5:00pm - 6:00pm"
-           TextColor="Black"
-           FontSize="16"
-               Margin="{OnPlatform '0,5,0,5'}"
-               Grid.Row="1"/>
-        <Label Text="Coach: Wong Li Li"
-               TextColor="Black"
-               FontSize="16"
-               Grid.Row="2"/>
-    </Grid>
-</Frame>-->
-
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+        
+        
     </ScrollView>
 </ContentPage>
