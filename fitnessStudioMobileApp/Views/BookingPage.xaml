@@ -2,23 +2,64 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
-             xmlns:local="clr-namespace:fitnessStudioMobileApp"
+             xmlns:local="clr-namespace:fitnessStudioMobileApp.Converter"
+             xmlns:behavior="clr-namespace:fitnessStudioMobileApp.Behavior"
+             xmlns:viewModels="clr-namespace:fitnessStudioMobileApp.ViewModels"
              x:Class="fitnessStudioMobileApp.Views.BookingPage"
              xmlns:control="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
+             xmlns:scheduler="clr-namespace:Syncfusion.Maui.Scheduler;assembly=Syncfusion.Maui.Scheduler"
              Shell.NavBarIsVisible="False"
              Title="BookingPage"
              BackgroundColor="{StaticResource MainBackgroundColor}">
     <ScrollView>
-        <VerticalStackLayout Padding="{OnPlatform 30}" VerticalOptions="Start">
+        <VerticalStackLayout VerticalOptions="Start">
             
             <!--title section display here-->
             <Label Text="Class Schedule"
                    TextColor="{StaticResource NormalTextColor}"
                    FontFamily="WorkSansMedium"
                    FontSize="{OnPlatform 24}"
-                   CharacterSpacing="-0.5"/>
+                   CharacterSpacing="-0.5"
+                   Padding="{OnPlatform '30,30,30,0'}"/>
 
-            <Image Source="class_schedule_image_sample.png" Aspect="AspectFit" WidthRequest="500"/>
+            <!--Class schedule image display here-->
+            <Frame HasShadow="False" Margin="{OnPlatform '0,20'}" Padding="{OnPlatform 0}" BorderColor="Transparent">
+                <Image Source="class_schedule_image_sample.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+            </Frame>
+
+            <scheduler:SfScheduler x:Name="Scheduler" 
+                           AppointmentsSource="{Binding Events}"
+                           MinimumDateTime="{Binding MinDateTime}"
+                           MaximumDateTime="{Binding MaxDateTime}"
+                           DisplayDate="{Binding DisplayDate}"
+                           ShowWeekNumber="True"
+                           AllowViewNavigation="True"
+                           Tapped="OnClassTapped"
+                                   MaximumHeightRequest="{OnPlatform 400}"
+                           View="Agenda">
+                
+                <scheduler:SfScheduler.AgendaView>
+                    <scheduler:SchedulerAgendaView>
+
+                        <scheduler:SchedulerAgendaView.MonthHeaderSettings>
+                            <scheduler:SchedulerMonthHeaderSettings DateFormat="MMM yyy"
+                                                            Height="50"
+                                                            Background="{StaticResource ActiveButtonBackgroundColor}"/>
+                        </scheduler:SchedulerAgendaView.MonthHeaderSettings>
+
+                        <scheduler:SchedulerAgendaView.WeekHeaderSettings>
+                            <scheduler:SchedulerWeekHeaderSettings DateFormat="MM dd"
+                                                           Height="30"
+                                                           Background="{StaticResource MainBackgroundColor}"/>
+                        </scheduler:SchedulerAgendaView.WeekHeaderSettings>
+
+                        <scheduler:SchedulerAgendaView.DayHeaderSettings>
+                            <scheduler:SchedulerDayHeaderSettings Background="{StaticResource Gray200}"/>
+                        </scheduler:SchedulerAgendaView.DayHeaderSettings>
+
+                    </scheduler:SchedulerAgendaView>
+                </scheduler:SfScheduler.AgendaView>
+            </scheduler:SfScheduler>
         </VerticalStackLayout>
        
 

@@ -4,6 +4,7 @@
              x:Class="fitnessStudioMobileApp.Views.SettingPage"
              Title="SettingPage"
              BackgroundColor="{StaticResource MainBackgroundColor}">
+    
     <VerticalStackLayout VerticalOptions="Start">
         <!--Personal information display here-->
         <StackLayout>
@@ -34,7 +35,7 @@
 
                 <!--email display here-->
                 <Frame Grid.Row="2" CornerRadius="0" Padding="{OnPlatform 0}" BorderColor="Transparent">
-                    <Label Text="Alice Wong Li Li"
+                    <Label Text="example@gmail.com"
                            FontSize="16"
                            FontFamily="WorkSansMedium"
                            CharacterSpacing="-0.5"

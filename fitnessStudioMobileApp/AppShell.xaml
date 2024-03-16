@@ -16,13 +16,13 @@
 
     <ShellContent
         Title="Login"
-        ContentTemplate="{DataTemplate local:BookingPage}"
+        ContentTemplate="{DataTemplate local:SettingPage}"
         Route="WelcomePage">
     </ShellContent>
 
     <!--Tab Bar-->
     <TabBar x:Name="NavigationBar" Route="main">
-        <Tab Title="Home" Icon="profile.png">
+        <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>
         </Tab>
         <Tab Title="Schedule" Icon="schedule.png">

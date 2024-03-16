@@ -8,11 +8,11 @@
     <ScrollView Padding="{OnPlatform 30}">
         <VerticalStackLayout>
             <!--setting icon button display here-->
-            <Image Source="setting.png" HeightRequest="{OnPlatform 40}" BackgroundColor="{StaticResource MainBackgroundColor}" HorizontalOptions="End">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToSettingPageCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
+            <Frame BorderColor="Black" Padding="{OnPlatform 0}" WidthRequest="{OnPlatform 40}" HorizontalOptions="End">
+                <ImageButton Source="setting.png" HeightRequest="{OnPlatform 40}"  HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit"
+                             Command="{Binding GoToSettingPageCommand}">
+                </ImageButton>
+            </Frame>
             
             <Label Text="Chua Jia Jun"
                    FontSize="{OnPlatform 28}"

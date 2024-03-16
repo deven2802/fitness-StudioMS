@@ -1,6 +1,11 @@
 using System.Globalization;
 using Color = Microsoft.Maui.Graphics.Color;
 using System.Drawing;
+using fitnessStudioMobileApp.ViewModels;
+using fitnessStudioMobileApp.Model;
+using fitnessStudioMobileApp.Behavior;
+using fitnessStudioMobileApp.Converter;
+using Syncfusion.Maui.Scheduler;
 
 namespace fitnessStudioMobileApp.Views;
 
@@ -11,6 +16,7 @@ public partial class BookingPage : ContentPage
     public BookingPage()
 	{
 		InitializeComponent();
+        this.BindingContext = new TabbedPageViewModel();
     // <summary>
     // The time slot string is used to handle while book an appointment. While select the time slot then time slot variable value will be updates with respective tapped time slot.
     // It is used to reset the time slot.
@@ -229,5 +235,13 @@ public partial class BookingPage : ContentPage
         }
     */
     }
+
+    //navigate the class schedule from the booking page to the slot booking page
+    private async void OnClassTapped(object sender, SchedulerTappedEventArgs e)
+    {
+        // Navigate to SlotBookingPage, passing the selectedAppointment as a parameter
+        // Adjust navigation based on your app's navigation structure
+        await Shell.Current.GoToAsync(nameof(SlotBookingPage), true, new Dictionary<string, object>());
+    }
 }
-	
+
