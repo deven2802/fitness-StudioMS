@@ -2,16 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="fitnessStudioMobileApp.Views.SettingPage"
-             Title="SettingPage"
-             BackgroundColor="{StaticResource MainBackgroundColor}">
+             xmlns:local="clr-namespace:fitnessStudioMobileApp"
+             xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
+             Title=""
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="{StaticResource MainBackgroundColor}"
+             Shell.BackgroundColor="{StaticResource ActiveButtonBackgroundColor}">
     
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back_button.png"/>
+    </Shell.BackButtonBehavior>
+
     <VerticalStackLayout VerticalOptions="Start">
         <!--Personal information display here-->
         <StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="{OnPlatform *}"/>
-                    <RowDefinition Height="{OnPlatform *}"/>
                     <RowDefinition Height="{OnPlatform *}"/>
                     <RowDefinition Height="{OnPlatform *}"/>
                 </Grid.RowDefinitions>
@@ -23,25 +30,48 @@
                        Padding="{OnPlatform '15,15,0,15'}"
                        Grid.Row="0"/>
 
-                <!--Full name display here-->
-                <Frame Grid.Row="1" CornerRadius="0" Padding="{OnPlatform 0}" BorderColor="{StaticResource Gray300}">
-                    <Label Text="Alice Wong Li Li"
-                           FontSize="16"
-                           FontFamily="WorkSansMedium"
-                           CharacterSpacing="-0.5"
-                           TextColor="{StaticResource NormalTextColor}"
-                           Padding="{OnPlatform '15,20'}"/>
-                </Frame>
-
-                <!--email display here-->
-                <Frame Grid.Row="2" CornerRadius="0" Padding="{OnPlatform 0}" BorderColor="Transparent">
-                    <Label Text="example@gmail.com"
-                           FontSize="16"
-                           FontFamily="WorkSansMedium"
-                           CharacterSpacing="-0.5"
-                           TextColor="{StaticResource NormalTextColor}"
-                           Padding="{OnPlatform '15,20'}"/>
-                </Frame>
+                <listView:SfListView x:Name="PersonalInformationListView"
+                                     Grid.Row="1"
+                                     Orientation="Vertical"
+                                     VerticalOptions="Start"
+                                     ScrollBarVisibility="Always"
+                                     BackgroundColor="Azure"
+                                     ItemSize="{OnPlatform 350}"
+                                     ItemSpacing="{OnPlatform '0,0,0,0'}"
+                                     ItemsSource="{Binding PersonalInfo}">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{OnPlatform Auto}"/>
+                                    <RowDefinition Height="{OnPlatform 1}"/>
+                                    <RowDefinition Height="{OnPlatform Auto}"/>
+                                    <RowDefinition Height="{OnPlatform 1}"/>
+                                    <RowDefinition Height="{OnPlatform Auto}"/>
+                                    <RowDefinition Height="{OnPlatform 1}"/>
+                                    <RowDefinition Height="{OnPlatform Auto}"/>
+                                    <RowDefinition Height="{OnPlatform 1}"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Row="0" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource FrameBackgroundColor}" HeightRequest="{OnPlatform 80}">
+                                    <Label Text="{Binding FullName}" Grid.Row="1" TextColor="{StaticResource ActiveButtonTextColor}" VerticalOptions="Center" LineBreakMode="WordWrap" FontFamily="WorkSansMedium" FontSize="{OnPlatform 18}" Padding="{OnPlatform 15}"/>
+                                </Frame>
+                                <BoxView Grid.Row="1" Color="{StaticResource Gray400}" HeightRequest="{OnPlatform 1}"/>
+                                <Frame Grid.Row="2" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource FrameBackgroundColor}" HeightRequest="{OnPlatform 80}">
+                                    <Label Text="{Binding Email}" Grid.Row="1" TextColor="{StaticResource ActiveButtonTextColor}" VerticalOptions="Center" LineBreakMode="WordWrap" FontFamily="WorkSansMedium" FontSize="{OnPlatform 18}" Padding="{OnPlatform 15}"/>
+                                </Frame>
+                                <BoxView Grid.Row="3" Color="{StaticResource Gray400}" HeightRequest="{OnPlatform 1}"/>
+                                <Frame Grid.Row="4" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource FrameBackgroundColor}" HeightRequest="{OnPlatform 80}">
+                                    <Label Text="{Binding PhoneNumber}" Grid.Row="1" TextColor="{StaticResource ActiveButtonTextColor}" VerticalOptions="Center" LineBreakMode="WordWrap" FontFamily="WorkSansMedium" FontSize="{OnPlatform 18}" Padding="{OnPlatform 15}"/>
+                                </Frame>
+                                <BoxView Grid.Row="5" Color="{StaticResource Gray400}" HeightRequest="{OnPlatform 1}"/>
+                                <Frame Grid.Row="6" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource FrameBackgroundColor}" HeightRequest="{OnPlatform 80}">
+                                    <Label Text="{Binding HomeAddress}" Grid.Row="1" TextColor="{StaticResource ActiveButtonTextColor}" VerticalOptions="Center" LineBreakMode="WordWrap" FontFamily="WorkSansMedium" FontSize="{OnPlatform 18}" Padding="{OnPlatform 15}"/>
+                                </Frame>
+                                <BoxView Grid.Row="7" Color="{StaticResource Gray400}" HeightRequest="{OnPlatform 1}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
             </Grid>
             
         </StackLayout>

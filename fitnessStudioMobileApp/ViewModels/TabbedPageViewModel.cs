@@ -9,25 +9,29 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using fitnessStudioMobileApp.Views;
 using fitnessStudioMobileApp.Model;
+using fitnessStudioMobileApp.Services;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Firebase.Storage;
+using Firebase.Auth;
+using Firebase.Database;
 using Syncfusion.Maui.Scheduler;
+using System.Diagnostics;
+using Microsoft.Maui.Storage;
 
 
 namespace fitnessStudioMobileApp.ViewModels
 {
-    public partial class TabbedPageViewModel: ObservableObject
-    {
+    public partial class TabbedPageViewModel: ObservableObject, INotifyPropertyChanged
+    {   
         //navigate to settingPage
-        [RelayCommand]
-        public async Task GoToSettingPageCommand()
+        public ICommand GoToSettingPageCommand { get; }
+
+        private async Task GoToSettingPageAsync()
         {
-            await Shell.Current.GoToAsync("SettingPage");
+            // Assuming you're using Shell navigation
+            await Shell.Current.GoToAsync(nameof(SettingPage));
         }
-
-
-
-
 
         private async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
@@ -40,11 +44,84 @@ namespace fitnessStudioMobileApp.ViewModels
             }
         }
 
+        /*
+        UploadImage uploadImage { get; set; }
+
+        private async void OnUploadImageClicked(object sender, EventArgs e)
+        {
+            var img = await uploadImage.OpenMediaPickerAsync();
+
+            var imagefile = await uploadImage.Upload(img);
+
+            //Image_Upload.Source = ImageSource.FromStream(() => 
+            uploadImage.ByteArrayToStream(uploadImage.StringToByteBase64(imagefile.byteBase64));
+        }
+        */
+
+        private string _fileName;
+        public string FileName
+        {
+            get => _fileName;
+            set
+            {
+                _fileName = value;
+                OnPropertyChanged(nameof(FileName));
+            }
+        }
+
+        private readonly FirebaseStorageService _firebaseStorageService;
+
+        public async Task UploadFile(Stream fileStream, string _fileName)
+        {
+            try
+            {
+               // string firebaseToken = await GetFirebaseTokenAsync(); // Implement this method to get the Firebase token
+                string imageUrl = await _firebaseStorageService.UploadFileAsync(fileStream, _fileName);
+
+                if (!string.IsNullOrEmpty(imageUrl))
+                {
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await App.Current.MainPage.DisplayAlert("Success", "Payment Receipt Uploaded successfully!", "OK");
+                    });
+                }
+                else
+                {
+                    // Handle the failure case, e.g., by showing an error message
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Failed to upload the payment receipt.", "OK");
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error uploading file: {ex.Message}");
+            }
+        }
+
+        private string _statusMessage = "Select a file to upload: ";
+        public string StatusMessage
+        {
+            get => _statusMessage;
+            set
+            {
+                _statusMessage = value;
+                OnPropertyChanged(nameof(StatusMessage));
+            }
+        }
+
+
         //display the announcement info in the home page starts//
+        //display the personal information in the setting page starts//
         #region Fields
 
         private ObservableCollection<AnnouncementInfo>? announcementInfo;
         private ObservableCollection<AnnouncementInfo>? announcementInfo1;
+
+        //personal information
+        private ObservableCollection<PersonalInfo>? personalInfo;
 
         #endregion
 
@@ -55,6 +132,11 @@ namespace fitnessStudioMobileApp.ViewModels
         /// </summary>
         public TabbedPageViewModel()
         {
+            //page navigation
+            GoToSettingPageCommand = new Command(async () => await GoToSettingPageAsync());
+
+            ///uploadImage = new UploadImage();
+
             GenerateSource();
 
             //part of the code for class scheduler
@@ -81,6 +163,13 @@ namespace fitnessStudioMobileApp.ViewModels
             set { this.announcementInfo1 = value;}
         }
 
+        //personal information
+        public ObservableCollection<PersonalInfo>? PersonalInfo
+        {
+            get { return personalInfo; }
+            set { this.personalInfo = value; }
+        }
+
         #endregion
 
         #region Generate Source
@@ -91,6 +180,10 @@ namespace fitnessStudioMobileApp.ViewModels
             AnnouncementInfoRespository announcementinfo = new();
             announcementInfo = announcementinfo.GetAnnouncementInfo();
             announcementInfo1 = announcementinfo.GetAnnouncementInfo1();
+
+            //personalInfo respository
+            PersonalInfoRespository personalinfo = new();
+            personalInfo = personalinfo.GetPersonalInfo();
 
             //class respository
             ClassInfoRespository classinfo = new();

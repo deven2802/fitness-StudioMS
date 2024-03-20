@@ -7,8 +7,13 @@ public partial class ProfilePage : ContentPage
 	public ProfilePage()
 	{
 		InitializeComponent();
-        this.BindingContext = new TabbedPageViewModel();
+        //this.BindingContext = new TabbedPageViewModel();
 	}
+
+    private async void GoToSettingPageCommand(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SettingPage));
+    }
 
     /*
     private async void OnLogoutButtonClicked(object sender, EventArgs e)

@@ -17,6 +17,7 @@ namespace fitnessStudioMobileApp
             Routing.RegisterRoute(nameof(BookingPage), typeof(BookingPage));
             Routing.RegisterRoute(nameof(MembershipPage), typeof(MembershipPage));
             Routing.RegisterRoute(nameof(SlotBookingPage), typeof(SlotBookingPage));
+            Routing.RegisterRoute(nameof(UploadReceiptPage), typeof(UploadReceiptPage));
 
         }
     }

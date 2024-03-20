@@ -66,6 +66,7 @@
 	  <None Remove="Resources\Images\package_list.png" />
 	  <None Remove="Resources\Images\password.png" />
 	  <None Remove="Resources\Images\phone_number.png" />
+	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\schedule.png" />
 	  <None Remove="Resources\Images\setting.png" />
@@ -81,6 +82,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
+		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Mopups" Version="1.2.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -129,6 +131,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SlotBookingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UploadReceiptPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WelcomePage.xaml">

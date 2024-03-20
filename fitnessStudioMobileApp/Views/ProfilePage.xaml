@@ -84,8 +84,7 @@
                     HeightRequest="50" 
                     Margin="{OnPlatform '0,200,0,0'}"
                     CornerRadius="10"
-                    Command="{Binding OnLogoutButtonClicked}"
-                    />
+                    Command="{Binding OnLogoutButtonClicked}"/>
             <!--Clicked="OnLogoutButtonClicked"-->
         </VerticalStackLayout>
     </ScrollView>
