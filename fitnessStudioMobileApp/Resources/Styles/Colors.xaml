@@ -17,11 +17,12 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
-    
+
     <!--color theme that is used in this mobile app-->
     <Color x:Key="NormalTextColor">#402E32</Color>
     <Color x:Key="ErrorTextColor">#E53935</Color>
-    <Color x:Key="MainBackgroundColor">#E5FFFF </Color>
+    <Color x:Key="ValidTextColor">#38E79F</Color>
+    <Color x:Key="MainBackgroundColor">#E5FFFF</Color>
     <Color x:Key="ActiveButtonBackgroundColor">#3EA99F</Color>
     <Color x:Key="ActiveButtonTextColor">#FFF8EA</Color>
     <Color x:Key="ActiveEntryBackgroundColor">#E5FFFF</Color>
@@ -30,6 +31,7 @@
     <Color x:Key="ActiveTextColor">#002FA7</Color>
     <Color x:Key="NavBarBackgroundColor">#E0FFFF</Color>
     <Color x:Key="TabBarSelectedTitleColor">#3EA99F</Color>
+    <Color x:Key="FrameBackgroundColor">#338080</Color>
     <Color x:Key="Primary">#512BD4</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
