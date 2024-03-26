@@ -8,9 +8,9 @@ public partial class SlotBookingPage : ContentPage
     private string timeSlot = string.Empty;
 
     public SlotBookingPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     private void SlotBooking_Changed(object sender, EventArgs e)
     {
@@ -34,12 +34,13 @@ public partial class SlotBookingPage : ContentPage
         // ...
 
         // Mock delay to simulate booking process
-        await Task.Delay(1000);
+        await Task.Delay(100);
 
         // Add slot to booked slots list
         bookedSlots.Add(slot);
 
         await DisplayAlert("Confirmation", $"Appointment booked for {slot}", "OK");
+        await Shell.Current.GoToAsync(nameof(UploadReceiptPage));
 
         // Optionally, reset the UI or navigate to another page
     }
