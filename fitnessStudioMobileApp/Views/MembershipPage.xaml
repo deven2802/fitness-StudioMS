@@ -2,36 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="fitnessStudioMobileApp.Views.MembershipPage"
-             Title="MembershipPage">
+             Title=""
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource MainBackgroundColor}">
     <ScrollView>
-        <VerticalStackLayout VerticalOptions="Start" Padding="30,30">
-            <Frame HeightRequest="150" Padding="0" Margin="{OnPlatform '0,20,0,0'}">
+        <VerticalStackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
+            <!--title section display here-->
+            <Label Text="Packages Available"
+                   FontSize="{OnPlatform 24}"
+                    Grid.Column="0"
+                    FontFamily="WorkSansMedium"
+                    CharacterSpacing="-0.5"
+                    TextColor="{StaticResource NormalTextColor}"/>
+
+            <Frame MinimumHeightRequest="{OnPlatform 100}" Padding="{OnPlatform  0}" Margin="{OnPlatform '0,20,0,0'}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{OnPlatform Auto}"/>
+                        <ColumnDefinition Width="{OnPlatform *}"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="package_list.png" HeightRequest="50" Grid.Column="0" HorizontalOptions="Start" Margin="20,0,0,0"/>
+                    <Image Source="package_list.png" HeightRequest="{OnPlatform 50}" Grid.Column="0" HorizontalOptions="Start" Margin="{OnPlatform '20,0,0,0'}"/>
 
                     <VerticalStackLayout Grid.Column="1">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="{OnPlatform Auto}"/>
+                                <RowDefinition Height="{OnPlatform *}"/>
                             </Grid.RowDefinitions>
                             <Label Text="Weekly Package Subscription"
-                                   FontSize="24"
-                                   TextColor="Black"
-                                   FontAttributes="Bold"
-                                   Margin="0,20,0,0"
+                                   FontSize="{OnPlatform 24}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   FontFamily="WorkSansRegular"
+                                   Margin="{OnPlatform '0,20,0,0'}"
                                    Grid.Row="0"
                                    HorizontalTextAlignment="Center"/>
 
-                            <Label Text="RM20"
-                                   FontSize="20"
-                                   TextColor="Black"
-                                   Margin="0,20,0,0"
+                            <Label x:Name="Price" 
+                                   Text="RM20"
+                                   FontSize="{OnPlatform 20}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   Margin="{OnPlatform '0,15,0,20'}"
                                    HorizontalTextAlignment="Center"
                                    Grid.Row="1"/>
                         </Grid>
@@ -39,6 +50,110 @@
                 </Grid>
             </Frame>
 
+            <Frame MinimumHeightRequest="{OnPlatform 100}" Padding="{OnPlatform  0}" Margin="{OnPlatform '0,20,0,0'}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{OnPlatform Auto}"/>
+                        <ColumnDefinition Width="{OnPlatform *}"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="package_list.png" HeightRequest="{OnPlatform 50}" Grid.Column="0" HorizontalOptions="Start" Margin="{OnPlatform '20,0,0,0'}"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{OnPlatform Auto}"/>
+                                <RowDefinition Height="{OnPlatform *}"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Monthly Package Subscription"
+                                    FontSize="{OnPlatform 24}"
+                                    TextColor="{StaticResource NormalTextColor}"
+                                    FontFamily="WorkSansRegular"
+                                    Margin="{OnPlatform '0,20,0,0'}"
+                                    Grid.Row="0"
+                                    HorizontalTextAlignment="Center"/>
+
+                            <Label x:Name="Price2" 
+                                   Text="RM20"
+                                   FontSize="{OnPlatform 20}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   Margin="{OnPlatform '0,15,0,20'}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Row="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame MinimumHeightRequest="{OnPlatform 100}" Padding="{OnPlatform  0}" Margin="{OnPlatform '0,20,0,0'}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{OnPlatform Auto}"/>
+                        <ColumnDefinition Width="{OnPlatform *}"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="package_list.png" HeightRequest="{OnPlatform 50}" Grid.Column="0" HorizontalOptions="Start" Margin="{OnPlatform '20,0,0,0'}"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{OnPlatform Auto}"/>
+                                <RowDefinition Height="{OnPlatform *}"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Yearly Package Subscription"
+                                   FontSize="{OnPlatform 24}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   FontFamily="WorkSansRegular"
+                                   Margin="{OnPlatform '0,20,0,0'}"
+                                   Grid.Row="0"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label x:Name="Price3" 
+                                   Text="RM20"
+                                   FontSize="{OnPlatform 20}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   Margin="{OnPlatform '0,15,0,20'}"
+                                   HorizontalTextAlignment="Center"
+                       Grid.Row="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame MinimumHeightRequest="{OnPlatform 100}" Padding="{OnPlatform  0}" Margin="{OnPlatform '0,20,0,0'}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{OnPlatform Auto}"/>
+                        <ColumnDefinition Width="{OnPlatform *}"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="package_list.png" HeightRequest="{OnPlatform 50}" Grid.Column="0" HorizontalOptions="Start" Margin="{OnPlatform '20,0,0,0'}"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{OnPlatform Auto}"/>
+                                <RowDefinition Height="{OnPlatform *}"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Weekly Package Subscription"
+                                   FontSize="{OnPlatform 24}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   FontFamily="WorkSansRegular"
+                                   Margin="{OnPlatform '0,20,0,0'}"
+                                   Grid.Row="0"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label x:Name="Price4" 
+                                   Text="RM20"
+                                   FontSize="{OnPlatform 20}"
+                                   TextColor="{StaticResource NormalTextColor}"
+                                   Margin="{OnPlatform '0,15,0,20'}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Row="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
             <Frame HeightRequest="150" Padding="0" Margin="{OnPlatform '0,20,0,0'}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -108,6 +223,6 @@
             </Frame>
 
         </VerticalStackLayout>
-        
+
     </ScrollView>
 </ContentPage>

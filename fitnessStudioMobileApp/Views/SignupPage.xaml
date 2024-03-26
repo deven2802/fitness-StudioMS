@@ -5,12 +5,13 @@
              xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
              xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="fitnessStudioMobileApp.Views.SignupPage"
              Title=""
              Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource MainBackgroundColor}">
-    
+
     <!--Main body of signup Page-->
     <StackLayout VerticalOptions="Start" Padding="{OnPlatform 30}">
         <!--Title Section-->
@@ -39,10 +40,22 @@
 
         <!--Register boxes details-->
         <VerticalStackLayout>
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,30,0,0'}" Hint="Full Name" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your full name" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+            <inputLayout:SfTextInputLayout x:Name="FirstNameFieldMobile" Margin="{OnPlatform '0,30,0,0'}" Hint="Full Name" LeadingViewPosition="Inside" ContainerType="Outlined"  
+                                           HeightRequest="{OnPlatform 77}" HelperText="Please enter your full name" ErrorText="Re-enter your full name"
+                                           UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <inputLayout:SfTextInputLayout.Triggers>
+                    <DataTrigger TargetType="inputLayout:SfTextInputLayout"
+                                 Binding="{Binding Source={x:Reference fullNameEntry}, Path=Text.Length}"
+                                 Value="0">
+                        <Setter Property="HasError" Value="True"/>
+                        <Setter Property="ErrorText" Value="Please fill in your full name"/>
+                    </DataTrigger>
+                </inputLayout:SfTextInputLayout.Triggers>
                 <!--entry details-->
-                <Entry Placeholder="Alice Wong Li Li"
+                <Entry x:Name="fullNameEntry" 
+                       Text="{Binding FullName}"
+                       Placeholder="Alice Wong Li Li"
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
@@ -61,6 +74,9 @@
                 <inputLayout:SfTextInputLayout.HelperLabelStyle>
                     <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
                 </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                <inputLayout:SfTextInputLayout.ErrorLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource ErrorTextColor}"/>
+                </inputLayout:SfTextInputLayout.ErrorLabelStyle>
 
                 <!--indicates the border color while it is normal and focus-->
                 <VisualStateManager.VisualStateGroups>
@@ -76,15 +92,31 @@
                                     <Setter Property="Stroke" Value="#3EA99F"/>
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="Error">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#E53935"/>
+                                </VisualState.Setters>
+                            </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,5,0,0'}" Hint="Email" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your email" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+            <inputLayout:SfTextInputLayout x:Name="EmailFieldMobile" Margin="{OnPlatform '0,5,0,0'}" Hint="Email" LeadingViewPosition="Inside" ContainerType="Outlined" 
+                                           HeightRequest="{OnPlatform 77}" HelperText="Please enter your email" ErrorText="Re-enter your email"
+                                           UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <inputLayout:SfTextInputLayout.Triggers>
+                    <DataTrigger TargetType="inputLayout:SfTextInputLayout"
+                                 Binding="{Binding Source={x:Reference emailEntry}, Path=Text.Length}"
+                                 Value="0">
+                        <Setter Property="HasError" Value="True"/>
+                        <Setter Property="ErrorText" Value="Please fill in the valid email"/>
+                    </DataTrigger>
+                </inputLayout:SfTextInputLayout.Triggers>
                 <!--entry details-->
-                <Entry Placeholder="abc123@gmail.com"
+                <Entry x:Name="emailEntry" 
+                       Placeholder="example@gmail.com"
                        Text="{Binding Email}"
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
@@ -104,6 +136,9 @@
                 <inputLayout:SfTextInputLayout.HelperLabelStyle>
                     <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource NormalTextColor}"/>
                 </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                <inputLayout:SfTextInputLayout.ErrorLabelStyle>
+                    <inputLayout:LabelStyle FontSize="12" FontFamily="WorkSansRegular" TextColor="{StaticResource ErrorTextColor}"/>
+                </inputLayout:SfTextInputLayout.ErrorLabelStyle>
 
                 <!--indicates the border color while it is normal and focus-->
                 <VisualStateManager.VisualStateGroups>
@@ -119,14 +154,28 @@
                                     <Setter Property="Stroke" Value="#3EA99F"/>
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="Error">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#E53935"/>
+                                </VisualState.Setters>
+                            </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,5,0,0'}" Hint="Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" 
+            <inputLayout:SfTextInputLayout x:Name="PasswordFieldMobile" Margin="{OnPlatform '0,5,0,0'}" Hint="Password" EnablePasswordVisibilityToggle="True" 
+                                           TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" 
                                            HelperText="Password must contains at least 6 characters" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <inputLayout:SfTextInputLayout.Triggers>
+                    <DataTrigger TargetType="inputLayout:SfTextInputLayout"
+                 Binding="{Binding Source={x:Reference PasswordEntry}, Path=Text.Length}"
+                 Value="5">
+                        <Setter Property="HasError" Value="True"/>
+                        <Setter Property="ErrorText" Value="Password must contains at least 6 characters"/>
+                    </DataTrigger>
+                </inputLayout:SfTextInputLayout.Triggers>
                 <!--entry details-->
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}"
@@ -162,14 +211,28 @@
                                     <Setter Property="Stroke" Value="#3EA99F"/>
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="Error">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#E53935"/>
+                                </VisualState.Setters>
+                            </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,5,0,0'}" Hint="Confirm Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" 
+            <inputLayout:SfTextInputLayout x:Name="ConfirmPasswordFieldMobile" Margin="{OnPlatform '0,5,0,0'}" Hint="Confirm Password" EnablePasswordVisibilityToggle="True" 
+                                           TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" 
                                            HelperText="Please confirm your password" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                            ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <inputLayout:SfTextInputLayout.Triggers>
+                    <DataTrigger TargetType="inputLayout:SfTextInputLayout"
+                 Binding="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=Text.Length}"
+                 Value="5">
+                        <Setter Property="HasError" Value="True"/>
+                        <Setter Property="ErrorText" Value="The confirm password is not matched with your password"/>
+                    </DataTrigger>
+                </inputLayout:SfTextInputLayout.Triggers>
                 <!--entry details-->
                 <Entry x:Name="ConfirmPasswordEntry"
                        Text="{Binding ConfirmPassword, Mode=TwoWay}"
@@ -178,13 +241,11 @@
                        CharacterSpacing="-0.5"
                        FontSize="16">
                 </Entry>
-                <!--TextChanged="{Binding ConfirmPasswordChanged}"-->
 
                 <!--icons-->
                 <inputLayout:SfTextInputLayout.LeadingView>
                     <Image Source="password.png"/>
                 </inputLayout:SfTextInputLayout.LeadingView>
-
 
                 <!--inputLayout hint and helperLabelStyle text color-->
                 <inputLayout:SfTextInputLayout.HintLabelStyle>
@@ -219,11 +280,22 @@
             </inputLayout:SfTextInputLayout>
 
             <!--phone number input box-->
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,5,0,0'}" Hint="Phone Number" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your phone number without '-'" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
-                               HasError="True" ErrorText="Invalid Phone Number" 
-                               ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+            <inputLayout:SfTextInputLayout x:Name="phoneNumberFieldMobile" Margin="{OnPlatform '0,5,0,0'}" Hint="Phone Number" LeadingViewPosition="Inside" ContainerType="Outlined" 
+                                           HeightRequest="{OnPlatform 77}" HelperText="Please enter your phone number without '-'" 
+                                           UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           HasError="False" ErrorText="Invalid Phone Number" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <inputLayout:SfTextInputLayout.Triggers>
+                    <DataTrigger TargetType="inputLayout:SfTextInputLayout"
+                 Binding="{Binding Source={x:Reference phoneNumberEntry}, Path=Text.Length}"
+                 Value="9">
+                        <Setter Property="HasError" Value="True"/>
+                        <Setter Property="ErrorText" Value="Please fill in the valid phone number"/>
+                    </DataTrigger>
+                </inputLayout:SfTextInputLayout.Triggers>
                 <!--entry details-->
-                <editors:SfMaskedEntry Placeholder="0123456789"
+                <editors:SfMaskedEntry x:Name="phoneNumberEntry" 
+                                       Placeholder="0123456789"
                                        MaskType="RegEx"
                                        Mask=""
                                        PlaceholderColor="{StaticResource BlurTextColor}"
@@ -268,10 +340,21 @@
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,5,0,0'}" Hint="Home Address" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your home address" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
-                   ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
+            <inputLayout:SfTextInputLayout x:Name="homeAddressFieldMobile" Margin="{OnPlatform '0,5,0,0'}" Hint="Home Address" LeadingViewPosition="Inside" ContainerType="Outlined" 
+                                           HeightRequest="{OnPlatform 77}" HelperText="Please enter your home address" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+                                           ContainerBackground="{StaticResource ActiveEntryBackgroundColor}"  Stroke="{StaticResource ActiveButtonBackgroundColor}">
+                <inputLayout:SfTextInputLayout.Triggers>
+                    <DataTrigger TargetType="inputLayout:SfTextInputLayout"
+                             Binding="{Binding Source={x:Reference phoneNumberEntry}, Path=Text.Length}"
+                             Value="9">
+                        <Setter Property="HasError" Value="True"/>
+                        <Setter Property="ErrorText" Value="Please fill in the valid phone number"/>
+                    </DataTrigger>
+                </inputLayout:SfTextInputLayout.Triggers>
                 <!--entry details-->
-                <Entry Placeholder=""
+                <Entry x:Name="homeAddressEntry"
+                       Text="{Binding HomeAddress}"
+                       Placeholder=""
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
                        FontFamily="WorkSansRegular"
@@ -303,6 +386,11 @@
                             <VisualState Name="Focused">
                                 <VisualState.Setters>
                                     <Setter Property="Stroke" Value="#3EA99F"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Error">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#E53935"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
