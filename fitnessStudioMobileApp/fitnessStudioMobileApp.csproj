@@ -152,9 +152,4 @@
 	  </PackageReference>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Model\" />
-	  <Folder Include="Converter\" />
-	</ItemGroup>
-
 </Project>
