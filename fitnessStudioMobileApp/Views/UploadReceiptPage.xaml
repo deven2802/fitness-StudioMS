@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
+             x:Class="fitnessStudioMobileApp.Views.UploadReceiptPage"
+             Title=""
+             Shell.NavBarIsVisible="True"
+             Shell.BackgroundColor="{StaticResource ActiveButtonBackgroundColor}"
+             BackgroundColor="{StaticResource MainBackgroundColor}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back_button.png"/>
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout Padding="{OnPlatform 30}">
+        <!--title section display here-->
+        <VerticalStackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnPlatform Auto}"/>
+                    <RowDefinition Height="{OnPlatform Auto}"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Upload Payment Receipt"
+                       FontSize="{OnPlatform 24}"
+                       FontFamily="WorkSansMedium"
+                       CharacterSpacing="-0.5"
+                       TextColor="{StaticResource NormalTextColor}"
+                       HorizontalOptions="Start"
+                       Grid.Row="0"/>
+                <Label Text="Please upload the payment receipt to confirm book the desire slot."
+                       FontSize="{OnPlatform 16}"
+                       FontFamily="WorkSansMedium"
+                       CharacterSpacing="-0.5"
+                       TextColor="{StaticResource NormalTextColor}"
+                       HorizontalOptions="Start"
+                       Margin="{OnPlatform '0,15'}"
+                       Grid.Row="1"/>
+            </Grid>
+
+            <VerticalStackLayout>
+                <Label x:Name="StatusLabel"
+                   Text="{Binding StatusMessage}"
+                   TextColor="{StaticResource NormalTextColor}"
+                   FontSize="{OnPlatform 18}"
+                   FontFamily="WorkSansRegular"
+                   CharacterSpacing="-0.5"
+                   HorizontalOptions="Center"/>
+
+                <Frame Margin="{OnPlatform '0,10'}" BorderColor="{StaticResource ActiveButtonBackgroundColor}" BackgroundColor="GhostWhite">
+                    <Label Text="{Binding FileName}" HorizontalOptions="Center"
+                       TextColor="{StaticResource NormalTextColor}"
+                       FontSize="{OnPlatform 16}"
+                       FontFamily="WorkSansMedium"
+                       CharacterSpacing="-0.5"
+                       Margin="{OnPlatform '0,10'}"/>
+                </Frame>
+
+                <Button Text="Click to Upload Receipt"
+                    TextColor="{StaticResource ActiveButtonTextColor}"
+                    FontFamily="WorkSansSemiBold"
+                    FontSize="{OnPlatform 16}"
+                    CharacterSpacing="-0.5"
+                    Clicked="OnUploadImageClicked"
+                    HorizontalOptions="Center"
+                    BackgroundColor="{StaticResource ActiveButtonBackgroundColor}"/>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
