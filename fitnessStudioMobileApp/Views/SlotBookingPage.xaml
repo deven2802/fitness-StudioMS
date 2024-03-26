@@ -3,23 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
              x:Class="fitnessStudioMobileApp.Views.SlotBookingPage"
-             Title="SlotBookingPage">
-    <FlexLayout x:Name="flexLayout" Wrap="Wrap" JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
-        <FlexLayout.Resources>
-            <Style TargetType="Button">
-                <Setter  Property="TextColor" Value="White"/>
-                <Setter  Property="BackgroundColor" Value="{StaticResource ActiveButtonBackgroundColor}"/>
-                <Setter Property="Margin" Value="0,0,10,0"/>
-            </Style>
-        </FlexLayout.Resources>
-        <Button Text="Slot 1" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 2" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 3" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 4" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 5" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 6" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 7" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 8" Clicked="SlotBooking_Changed"/>
-        <Button Text="Slot 9" Clicked="SlotBooking_Changed"/>
-    </FlexLayout>
+             Shell.BackgroundColor="{StaticResource ActiveButtonBackgroundColor}"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="{StaticResource MainBackgroundColor}"
+             Title="">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back_button.png"/>
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout Padding="0">
+        <!--title section display here-->
+        <VerticalStackLayout>
+            <Label Text="Slot Selection"
+                   TextColor="{StaticResource NormalTextColor}"
+                   FontFamily="WorkSansMedium"
+                   FontSize="{OnPlatform 24}"
+                   CharacterSpacing="-0.5"
+                   Padding="{OnPlatform '30,30,30,0'}"/>
+
+            <Label Text="This slot arrangement is based on the arrangement in this class. Please select a slot that you desire to book."
+                   TextColor="{StaticResource NormalTextColor}"
+                   FontFamily="WorkSansMedium"
+                   FontSize="{OnPlatform 16}"
+                   CharacterSpacing="-0.5"
+                   Padding="{OnPlatform '30,0'}"
+                   Margin="{OnPlatform '0,15'}"/>
+        </VerticalStackLayout>
+
+        <!--slot booking selection display here-->
+        <FlexLayout x:Name="flexLayout" Wrap="Wrap" JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
+            <FlexLayout.Resources>
+                <Style TargetType="Button">
+                    <Setter  Property="TextColor" Value="White"/>
+                    <Setter  Property="BackgroundColor" Value="{StaticResource ActiveButtonBackgroundColor}"/>
+                    <Setter Property="Margin" Value="0,20,10,0"/>
+                </Style>
+            </FlexLayout.Resources>
+            <Button Text="Slot 1" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 2" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 3" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 4" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 5" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 6" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 7" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 8" Clicked="SlotBooking_Changed"/>
+            <Button Text="Slot 9" Clicked="SlotBooking_Changed"/>
+        </FlexLayout>
+
+    </VerticalStackLayout>
 </ContentPage>
