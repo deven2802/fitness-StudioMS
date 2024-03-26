@@ -1,22 +1,17 @@
+using fitnessStudioMobileApp.ViewModels;
+
 namespace fitnessStudioMobileApp.Views;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
-	{
-		InitializeComponent();
-	}
-
-    private async void OnLogoutButtonClicked(object sender, EventArgs e)
+    public ProfilePage()
     {
-        bool confirmLogout = await DisplayAlert("Logout", "Are you sure you want to log out?", "Yes", "No");
+        InitializeComponent();
+        this.BindingContext = new SignupPageViewModel();
+    }
 
-        if (confirmLogout)
-        {
-            // Implement your logout logic here
-
-            // Navigate to LoginPage
-            await Shell.Current.GoToAsync(nameof(LoginPage)); // Using shell navigation
-        }
+    private async void GoToSettingPageClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync($"{nameof(SettingPage)}");
     }
 }
