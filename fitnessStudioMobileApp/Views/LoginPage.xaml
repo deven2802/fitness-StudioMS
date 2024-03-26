@@ -37,10 +37,10 @@
         </Frame>
 
         <VerticalStackLayout>
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,50,0,0'}" Hint="Email" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 75}" HelperText="Please enter your email" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,50,0,0'}" Hint="Email" LeadingViewPosition="Inside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" HelperText="Please enter your email" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
-                <Entry Placeholder="abc123@gmail.com"
+                <Entry Placeholder="example@gmail.com"
                        Text="{Binding UserName}"
                        PlaceholderColor="{StaticResource BlurTextColor}"
                        TextColor="{StaticResource NormalTextColor}"
@@ -80,7 +80,7 @@
                 </VisualStateManager.VisualStateGroups>
             </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 75}" 
+            <inputLayout:SfTextInputLayout Margin="{OnPlatform '0,20,0,0'}" Hint="Password" EnablePasswordVisibilityToggle="True" TrailingViewPosition="Outside" ContainerType="Outlined" HeightRequest="{OnPlatform 77}" 
                                HelperText="Please enter your password" UnfocusedStrokeThickness="1.5" FocusedStrokeThickness="2" OutlineCornerRadius="15" 
                                ContainerBackground="{StaticResource ActiveEntryBackgroundColor}" Stroke="{StaticResource ActiveButtonBackgroundColor}">
                 <!--entry details-->
@@ -133,17 +133,20 @@
             <!--forget Password btn cannot worked properly need to be fixed-->
             <StackLayout>
                 <!--forgot password-->
-                <Label Text="Forgot Password?"
+                <Button Text="Forgot Password?"
                        TextColor="{StaticResource ActiveTextColor}"
                        FontSize="{OnPlatform 16}"
-                       FontFamily="WorkSansMedium"
+                       FontFamily="WorkSansSemiBold"
                        CharacterSpacing="-0.5"
-                       HorizontalTextAlignment="End"
+                        Background="{StaticResource MainBackgroundColor}"
+                        HorizontalOptions="End"
+                       Clicked="OnForgotPasswordPageClicked"
                        Margin="{OnPlatform '0,10,0,0'}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnForgetPasswordPage}"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                    <!--HorizontalTextAlignment="End"-->
+                    <!--<Label.GestureRecognizers>-->
+                    <!--<TapGestureRecognizer Command="{Binding OnForgetPasswordPageCommand}"/>-->
+                    <!--</Label.GestureRecognizers>-->
+                </Button>
             </StackLayout>
 
             <Button Text="Login" 
