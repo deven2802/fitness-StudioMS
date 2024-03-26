@@ -152,4 +152,10 @@
 	  </PackageReference>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Model\" />
+	  <Folder Include="Behavior\" />
+	  <Folder Include="Converter\" />
+	</ItemGroup>
+
 </Project>
