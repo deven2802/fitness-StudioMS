@@ -1,132 +1,175 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
+             xmlns:local="clr-namespace:fitnessStudioMobileApp.Converter"
+             xmlns:behavior="clr-namespace:fitnessStudioMobileApp.Behavior"
+             xmlns:viewModels="clr-namespace:fitnessStudioMobileApp.ViewModels"
              x:Class="fitnessStudioMobileApp.Views.BookingPage"
              xmlns:control="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
-             Title="BookingPage">
+             xmlns:scheduler="clr-namespace:Syncfusion.Maui.Scheduler;assembly=Syncfusion.Maui.Scheduler"
+             Shell.NavBarIsVisible="False"
+             Title="BookingPage"
+             BackgroundColor="{StaticResource MainBackgroundColor}">
     <ScrollView>
-        
-    <Grid>
-        <!--calendar view for the desktop-->
-        <Grid IsVisible="False" x:Name="deskTop" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="500" WidthRequest="350">
-            <Frame IsVisible="False" x:Name="frame" BorderColor="WhiteSmoke" HasShadow="False" CornerRadius="10" BackgroundColor="White" HorizontalOptions="Center" Margin="0" Padding="0">
-                <Grid Background="#f5eeff">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*"/>
-                        <RowDefinition Height="0.35*"/>
-                        <RowDefinition Height="0.1*"/>
-                        <RowDefinition Height="0.35*"/>
-                        <RowDefinition Height="0.1*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" BackgroundColor="White" TextColor="Black" Text="Book an Appointment"/>
-                    <control:SfCalendar Grid.Row="1" x:Name="appointmentBooking" EnablePastDates="False" AllowViewNavigation="False" BackgroundColor="White" NavigationDirection="Horizontal"><!--SelectionChanged="AppointmentBooking_SelectionChanged"-->
-                        <control:SfCalendar.HeaderView>
-                            <control:CalendarHeaderView Background="#f5eeff"/>
-                        </control:SfCalendar.HeaderView>
-                        <control:SfCalendar.MonthView>
-                            <control:CalendarMonthView NumberOfVisibleWeeks="2">
-                                <control:CalendarMonthView.HeaderView>
-                                    <control:CalendarMonthHeaderView Background="#f5eeff"/>
-                                </control:CalendarMonthView.HeaderView>
-                            </control:CalendarMonthView>
-                        </control:SfCalendar.MonthView>
-                    </control:SfCalendar>
-                    <Label Grid.Row="2" x:Name="label" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" TextColor="Black" />
-                    <Grid Grid.Row="3">
-                        <FlexLayout x:Name="flexLayout" Wrap="Wrap"
-                        JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
-                            <FlexLayout.Resources>
-                                <Style TargetType="Button">
-                                    <Setter  Property="TextColor" Value="Black"/>
-                                    <Setter  Property="BackgroundColor" Value="White"/>
-                                </Style>
-                            </FlexLayout.Resources>
-                            <!--
-                            <Button Text="09:00 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="09:30 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="10:00 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="10:30 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="11:00 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="11:30 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="12:00 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="02:00 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="02:30 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="03:00 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="03:30 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="04:00 PM" Clicked="SlotBooking_Changed"/>
-                            -->
-                        </FlexLayout>
-                    </Grid>
-                    <Grid Grid.Row="4">
-                        <Button  Text="Book Appointment" BackgroundColor="#6200EE" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/><!-- Clicked="AppointmentanBooking"-->
-                    </Grid>
-                </Grid>
+        <VerticalStackLayout VerticalOptions="Start">
+
+            <!--title section display here-->
+            <Label Text="Class Schedule"
+                   TextColor="{StaticResource NormalTextColor}"
+                   FontFamily="WorkSansMedium"
+                   FontSize="{OnPlatform 24}"
+                   CharacterSpacing="-0.5"
+                   Padding="{OnPlatform '30,30,30,0'}"/>
+
+            <!--Class schedule image display here-->
+            <Frame HasShadow="False" Margin="{OnPlatform '0,20'}" Padding="{OnPlatform 0}" BorderColor="Transparent">
+                <Image Source="class_schedule_image_sample.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
             </Frame>
 
-            <Border x:Name="border" IsVisible="False" Stroke="WhiteSmoke" StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White" HorizontalOptions="Center" Margin="0" Padding="0">
-                <Grid Background="#f5eeff">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*"/>
-                        <RowDefinition Height="0.35*"/>
-                        <RowDefinition Height="0.1*"/>
-                        <RowDefinition Height="0.35*"/>
-                        <RowDefinition Height="0.1*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" BackgroundColor="White" TextColor="Black" Text="Book an Appointment"/>
-                    <control:SfCalendar Grid.Row="1" x:Name="appointmentBooking1" EnablePastDates="False" AllowViewNavigation="False" BackgroundColor="White" NavigationDirection="Horizontal"><!-- SelectionChanged="AppointmentBooking_SelectionChanged"-->
-                        <control:SfCalendar.HeaderView>
-                            <control:CalendarHeaderView Background="#f5eeff"/>
-                        </control:SfCalendar.HeaderView>
-                        <control:SfCalendar.MonthView>
-                            <control:CalendarMonthView NumberOfVisibleWeeks="2">
-                                <control:CalendarMonthView.HeaderView>
-                                    <control:CalendarMonthHeaderView Background="#f5eeff"/>
-                                </control:CalendarMonthView.HeaderView>
-                            </control:CalendarMonthView>
-                        </control:SfCalendar.MonthView>
-                    </control:SfCalendar>
-                    <Label Grid.Row="2" x:Name="label1" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" TextColor="Black" />
-                    <Grid Grid.Row="3">
-                        <FlexLayout x:Name="flexLayout1" Wrap="Wrap"
-                        JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
-                            <FlexLayout.Resources>
-                                <Style TargetType="Button">
-                                    <Setter  Property="TextColor" Value="Black"/>
-                                    <Setter  Property="BackgroundColor" Value="White"/>
-                                </Style>
-                            </FlexLayout.Resources>
-                            <!--
-                            <Button Text="09:00 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="09:30 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="10:00 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="10:30 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="11:00 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="11:30 AM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="12:00 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="02:00 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="02:30 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="03:00 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="03:30 PM" Clicked="SlotBooking_Changed"/>
-                            <Button Text="04:00 PM" Clicked="SlotBooking_Changed"/>
-                            -->
-                        </FlexLayout>
-                    </Grid>
-                    <Grid Grid.Row="4">
-                        <Button  Text="Book Appointment" BackgroundColor="#6200EE" HorizontalOptions="Center"  VerticalOptions="Center" WidthRequest="150"/><!--Clicked="AppointmentanBooking"-->
-                    </Grid>
-                </Grid>
-            </Border>
-        </Grid>
+            <scheduler:SfScheduler x:Name="Scheduler" 
+                           AppointmentsSource="{Binding Events}"
+                           MinimumDateTime="{Binding MinDateTime}"
+                           MaximumDateTime="{Binding MaxDateTime}"
+                           DisplayDate="{Binding DisplayDate}"
+                           ShowWeekNumber="True"
+                           AllowViewNavigation="True"
+                           Tapped="OnClassTapped"
+                           MaximumHeightRequest="{OnPlatform 400}"
+                           View="Agenda">
 
-        <!--calendar view for the mobile, so mainly use this-->
-        <Grid Background="#f5eeff" IsVisible="false" x:Name="mobile">
+                <scheduler:SfScheduler.AgendaView>
+                    <scheduler:SchedulerAgendaView>
+
+                        <scheduler:SchedulerAgendaView.MonthHeaderSettings>
+                            <scheduler:SchedulerMonthHeaderSettings DateFormat="MMM yyy"
+                                                            Height="50"
+                                                            Background="{StaticResource ActiveButtonBackgroundColor}"/>
+                        </scheduler:SchedulerAgendaView.MonthHeaderSettings>
+
+                        <scheduler:SchedulerAgendaView.WeekHeaderSettings>
+                            <scheduler:SchedulerWeekHeaderSettings DateFormat="MM dd"
+                                                           Height="30"
+                                                           Background="{StaticResource MainBackgroundColor}"/>
+                        </scheduler:SchedulerAgendaView.WeekHeaderSettings>
+
+                        <scheduler:SchedulerAgendaView.DayHeaderSettings>
+                            <scheduler:SchedulerDayHeaderSettings Background="{StaticResource Gray200}"/>
+                        </scheduler:SchedulerAgendaView.DayHeaderSettings>
+
+                    </scheduler:SchedulerAgendaView>
+                </scheduler:SfScheduler.AgendaView>
+            </scheduler:SfScheduler>
+        </VerticalStackLayout>
+
+
+
+        <!--<Grid Grid.Row="3" HorizontalOptions="Center" Padding="0,0,0,30">
+                <Button  Text="Book Appointment" TextColor="White" BackgroundColor="#6200EE" HorizontalOptions="Center"  VerticalOptions="End" WidthRequest="150" HeightRequest="50"/><Clicked="AppointmentanBooking"
+            </Grid>-->
+    </ScrollView>
+</ContentPage>
+
+<!--slot bookig-->
+<!-- <StackLayout Padding="0" VerticalOptions="Start">
+        <Frame HeightRequest="{OnPlatform 120}" x:Name="mobileFlexLayout" Padding="15">
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Yoga"
+                                    TextColor="Black"
+                                    FontSize="20"
+                                        Grid.Row="0"
+                                            Margin="0,0,0,10"
+                                    FontAttributes="Bold"/>
+                            <Label Text="5:00pm - 6:00pm"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                        Margin="{OnPlatform '0,5,0,5'}"
+                                        Grid.Row="1"/>
+                            <Label Text="Coach: Wong Li Li"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                    Grid.Row="2"/>
+                        </Grid>
+                    </StackLayout>
+                    <Button Text="Book"
+                                     FontSize="16"
+                                     Grid.Column="1"
+                                     HeightRequest="40"
+                                     />
+                    Clicked="OnBookingButtonClicked"
+                </Grid>
+            </Grid>
+        </Frame>
+        <Frame HeightRequest="{OnPlatform 120}" x:Name="mobileFlexLayout1" Margin="{OnPlatform '0,10,0,0'}" Padding="15">
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Yoga"
+                                    TextColor="Black"
+                                    FontSize="20"
+                                        Grid.Row="0"
+                                            Margin="0,0,0,10"
+                                    FontAttributes="Bold"/>
+                            <Label Text="5:00pm - 6:00pm"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                        Margin="{OnPlatform '0,5,0,5'}"
+                                        Grid.Row="1"/>
+                            <Label Text="Coach: Wong Li Li"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                    Grid.Row="2"/>
+                        </Grid>
+                    </StackLayout>
+                    <Button Text="Book"
+                                     FontSize="16"
+                                     Grid.Column="1"
+                                     HeightRequest="40"
+                                     />
+                    Clicked="OnBookingButtonClicked"
+                </Grid>
+            </Grid>
+        </Frame>
+        </StackLayout>-->
+
+
+
+<!--calendar view for the desktop
+    <Grid IsVisible="False" x:Name="deskTop" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="500" WidthRequest="350">
+    <Frame IsVisible="False" x:Name="frame" BorderColor="WhiteSmoke" HasShadow="False" CornerRadius="10" BackgroundColor="White" HorizontalOptions="Center" Margin="0" Padding="0">
+        <Grid Background="#f5eeff">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.25*"/>
-                <RowDefinition Height="0.10*"/>
-                <RowDefinition Height="0.25*"/>
-                <RowDefinition Height="0.40*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
-            <control:SfCalendar Grid.Row="0" x:Name="mobileAppointmentBooking" EnablePastDates="False" AllowViewNavigation="False" BackgroundColor="White" NavigationDirection="Horizontal"><!--SelectionChanged="AppointmentBooking_SelectionChanged"-->
+            <Label Grid.Row="0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" BackgroundColor="White" TextColor="Black" Text="Book an Appointment"/>
+            <control:SfCalendar Grid.Row="1" x:Name="appointmentBooking" EnablePastDates="False" AllowViewNavigation="False" BackgroundColor="White" NavigationDirection="Horizontal">
+                SelectionChanged="AppointmentBooking_SelectionChanged"
                 <control:SfCalendar.HeaderView>
                     <control:CalendarHeaderView Background="#f5eeff"/>
                 </control:SfCalendar.HeaderView>
@@ -138,18 +181,18 @@
                     </control:CalendarMonthView>
                 </control:SfCalendar.MonthView>
             </control:SfCalendar>
-            <Label Grid.Row="1" x:Name="mobileLabel" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" TextColor="Black" />
-            <Grid Grid.Row="2">
-                <!--<FlexLayout x:Name="mobileFlexLayout" Wrap="Wrap"
-                        JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Grid.Row="2" x:Name="label" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" TextColor="Black" />
+            <Grid Grid.Row="3">
+                <FlexLayout x:Name="flexLayout" Wrap="Wrap"
+                JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
                     <FlexLayout.Resources>
                         <Style TargetType="Button">
                             <Setter  Property="TextColor" Value="Black"/>
-                            <Setter  Property="Background" Value="White"/>
+                            <Setter  Property="BackgroundColor" Value="White"/>
                         </Style>
                     </FlexLayout.Resources>
-                        <Label Text="Good morning" TextColor="Black"/>
-                        <Button Text="09:00 AM" Clicked="SlotBooking_Changed"/>
+
+                    <Button Text="09:00 AM" Clicked="SlotBooking_Changed"/>
                     <Button Text="09:30 AM" Clicked="SlotBooking_Changed"/>
                     <Button Text="10:00 AM" Clicked="SlotBooking_Changed"/>
                     <Button Text="10:30 AM" Clicked="SlotBooking_Changed"/>
@@ -161,92 +204,114 @@
                     <Button Text="03:00 PM" Clicked="SlotBooking_Changed"/>
                     <Button Text="03:30 PM" Clicked="SlotBooking_Changed"/>
                     <Button Text="04:00 PM" Clicked="SlotBooking_Changed"/>
-                </FlexLayout>-->
-                    <VerticalStackLayout Padding="30,30" VerticalOptions="Start">
-                        <Frame HeightRequest="{OnPlatform 120}" x:Name="mobileFlexLayout" Padding="15">
-                            <Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Label Text="Yoga"
-                                           TextColor="Black"
-                                           FontSize="20"
-                                               Grid.Row="0"
-                                                   Margin="0,0,0,10"
-                                           FontAttributes="Bold"/>
-                                            <Label Text="5:00pm - 6:00pm"
-                                           TextColor="Black"
-                                           FontSize="16"
-                                               Margin="{OnPlatform '0,5,0,5'}"
-                                               Grid.Row="1"/>
-                                            <Label Text="Coach: Wong Li Li"
-                                           TextColor="Black"
-                                           FontSize="16"
-                                           Grid.Row="2"/>
-                                        </Grid>
-                                    </StackLayout>
-                                    <Button Text="Book"
-                                            FontSize="16"
-                                            Grid.Column="1"
-                                            HeightRequest="40"
-                                            Clicked="OnBookingButtonClicked"/>
-                                </Grid>
-                            </Grid>
-                        </Frame>
-                        <Frame HeightRequest="{OnPlatform 120}" x:Name="mobileFlexLayout1" Margin="{OnPlatform '0,10,0,0'}" Padding="15">
-                            <Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Label Text="Yoga"
-                                           TextColor="Black"
-                                           FontSize="20"
-                                               Grid.Row="0"
-                                                   Margin="0,0,0,10"
-                                           FontAttributes="Bold"/>
-                                            <Label Text="5:00pm - 6:00pm"
-                                           TextColor="Black"
-                                           FontSize="16"
-                                               Margin="{OnPlatform '0,5,0,5'}"
-                                               Grid.Row="1"/>
-                                            <Label Text="Coach: Wong Li Li"
-                                           TextColor="Black"
-                                           FontSize="16"
-                                           Grid.Row="2"/>
-                                        </Grid>
-                                    </StackLayout>
-                                    <Button Text="Book"
-                                            FontSize="16"
-                                            Grid.Column="1"
-                                            HeightRequest="40"
-                                            Clicked="OnBookingButtonClicked"/>
-                                </Grid>
-                            </Grid>
-                        </Frame>
-                    </VerticalStackLayout>
-                </Grid>
-            <!--<Grid Grid.Row="3" HorizontalOptions="Center" Padding="0,0,0,30">
-                <Button  Text="Book Appointment" TextColor="White" BackgroundColor="#6200EE" HorizontalOptions="Center"  VerticalOptions="End" WidthRequest="150" HeightRequest="50"/><Clicked="AppointmentanBooking"
-            </Grid>-->
+                </FlexLayout>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Button  Text="Book Appointment" BackgroundColor="#6200EE" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>
+                Clicked="AppointmentanBooking"
+            </Grid>
         </Grid>
+    </Frame>
+
+    <Border x:Name="border" IsVisible="False" Stroke="WhiteSmoke" StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10" BackgroundColor="White" HorizontalOptions="Center" Margin="0" Padding="0">
+        <Grid Background="#f5eeff">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" BackgroundColor="White" TextColor="Black" Text="Book an Appointment"/>
+            <control:SfCalendar Grid.Row="1" x:Name="appointmentBooking1" EnablePastDates="False" AllowViewNavigation="False" BackgroundColor="White" NavigationDirection="Horizontal">
+                SelectionChanged="AppointmentBooking_SelectionChanged"
+                <control:SfCalendar.HeaderView>
+                    <control:CalendarHeaderView Background="#f5eeff"/>
+                </control:SfCalendar.HeaderView>
+                <control:SfCalendar.MonthView>
+                    <control:CalendarMonthView NumberOfVisibleWeeks="2">
+                        <control:CalendarMonthView.HeaderView>
+                            <control:CalendarMonthHeaderView Background="#f5eeff"/>
+                        </control:CalendarMonthView.HeaderView>
+                    </control:CalendarMonthView>
+                </control:SfCalendar.MonthView>
+            </control:SfCalendar>
+            <Label Grid.Row="2" x:Name="label1" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" TextColor="Black" />
+            <Grid Grid.Row="3">
+                <FlexLayout x:Name="flexLayout1" Wrap="Wrap"
+                JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
+                    <FlexLayout.Resources>
+                        <Style TargetType="Button">
+                            <Setter  Property="TextColor" Value="Black"/>
+                            <Setter  Property="BackgroundColor" Value="White"/>
+                        </Style>
+                    </FlexLayout.Resources>
+
+                    <Button Text="09:00 AM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="09:30 AM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="10:00 AM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="10:30 AM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="11:00 AM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="11:30 AM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="12:00 PM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="02:00 PM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="02:30 PM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="03:00 PM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="03:30 PM" Clicked="SlotBooking_Changed"/>
+                    <Button Text="04:00 PM" Clicked="SlotBooking_Changed"/>
+
+                </FlexLayout>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Button  Text="Book Appointment" BackgroundColor="#6200EE" HorizontalOptions="Center"  VerticalOptions="Center" WidthRequest="150"/>
+                Clicked="AppointmentanBooking"
+            </Grid>
+        </Grid>
+    </Border>
     </Grid>
-    </ScrollView>
-</ContentPage>
+    calendar view for the mobile, so mainly use this
+    <Grid Background="#f5eeff" IsVisible="false" x:Name="mobile">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.40*"/>
+        </Grid.RowDefinitions>
+        <control:SfCalendar Grid.Row="0" x:Name="mobileAppointmentBooking" EnablePastDates="False" AllowViewNavigation="False" BackgroundColor="White" NavigationDirection="Horizontal">
+            SelectionChanged="AppointmentBooking_SelectionChanged"
+            <control:SfCalendar.HeaderView>
+                <control:CalendarHeaderView Background="#f5eeff"/>
+            </control:SfCalendar.HeaderView>
+            <control:SfCalendar.MonthView>
+                <control:CalendarMonthView NumberOfVisibleWeeks="2">
+                    <control:CalendarMonthView.HeaderView>
+                        <control:CalendarMonthHeaderView Background="#f5eeff"/>
+                    </control:CalendarMonthView.HeaderView>
+                </control:CalendarMonthView>
+            </control:SfCalendar.MonthView>
+        </control:SfCalendar>
+        <Label Grid.Row="1" x:Name="mobileLabel" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontSize="20" TextColor="Black" />
+        <Grid Grid.Row="2">
+            <FlexLayout x:Name="mobileFlexLayout" Wrap="Wrap"
+                JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" HorizontalOptions="Center">
+                <FlexLayout.Resources>
+                    <Style TargetType="Button">
+                        <Setter  Property="TextColor" Value="Black"/>
+                        <Setter  Property="Background" Value="White"/>
+                    </Style>
+                </FlexLayout.Resources>
+                <Label Text="Good morning" TextColor="Black"/>
+                <Button Text="09:00 AM" Clicked="SlotBooking_Changed"/>
+                <Button Text="09:30 AM" Clicked="SlotBooking_Changed"/>
+                <Button Text="10:00 AM" Clicked="SlotBooking_Changed"/>
+                <Button Text="10:30 AM" Clicked="SlotBooking_Changed"/>
+                <Button Text="11:00 AM" Clicked="SlotBooking_Changed"/>
+                <Button Text="11:30 AM" Clicked="SlotBooking_Changed"/>
+                <Button Text="12:00 PM" Clicked="SlotBooking_Changed"/>
+                <Button Text="02:00 PM" Clicked="SlotBooking_Changed"/>
+                <Button Text="02:30 PM" Clicked="SlotBooking_Changed"/>
+                <Button Text="03:00 PM" Clicked="SlotBooking_Changed"/>
+                <Button Text="03:30 PM" Clicked="SlotBooking_Changed"/>
+                <Button Text="04:00 PM" Clicked="SlotBooking_Changed"/>
+            </FlexLayout>
+    -->
