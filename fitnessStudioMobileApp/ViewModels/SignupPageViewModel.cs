@@ -14,6 +14,9 @@ using System.Runtime.CompilerServices;
 using Firebase.Auth;
 using Newtonsoft.Json;
 using CommunityToolkit.Maui.Views;
+using Syncfusion.Maui.Inputs;
+using textInputLayout = Syncfusion.Maui.Core.SfTextInputLayout;
+using System.Diagnostics;
 
 namespace fitnessStudioMobileApp.ViewModels
 {
@@ -33,14 +36,6 @@ namespace fitnessStudioMobileApp.ViewModels
             await Shell.Current.GoToAsync("LoginPage");
         }
 
-        //navigate to forgotPasswordPage
-        [RelayCommand]
-        public async Task OnForgetPasswordPage()
-        {
-            System.Diagnostics.Debug.WriteLine("Navigating to ForgotPasswordPage");
-            await Shell.Current.GoToAsync(nameof(ForgotPasswordPage));
-        }
-
         //navigate to signupPage
         [RelayCommand]
         public async Task GoToSignupPage()
@@ -58,7 +53,7 @@ namespace fitnessStudioMobileApp.ViewModels
         private string userName;
 
         private string userPassword;
-        
+
         private string email;
 
         private string password;
@@ -84,12 +79,13 @@ namespace fitnessStudioMobileApp.ViewModels
         }
 
         public string Email
-        { 
-            get => email; 
-            set {
+        {
+            get => email;
+            set
+            {
                 email = value;
                 RaisePropertyChanged("Email");
-            }  
+            }
         }
 
         public string Password
@@ -106,6 +102,9 @@ namespace fitnessStudioMobileApp.ViewModels
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
         public Command RegisterUserCommand { get; }
+        public ICommand ButtonSendLinkCommand { get; }
+        public ICommand OnLogoutButtonCommand { get; }
+
 
         private void RaisePropertyChanged(string v)
         {
@@ -117,6 +116,8 @@ namespace fitnessStudioMobileApp.ViewModels
             RegisterCommand = new Command(RegisterCommandTappedAsync);
             LoginCommand = new Command(LoginCommandTappedAsync);
             RegisterUserCommand = new Command(RegisterUserCommandTappedAsync);
+            OnLogoutButtonCommand = new Command(async () => await OnLogoutButtonAsync());
+            ButtonSendLinkCommand = new RelayCommand(SendPasswordResetEmailAsync);
         }
 
         //get the registered email and password from the signupPage, and validate the email and password is correct
@@ -139,10 +140,10 @@ namespace fitnessStudioMobileApp.ViewModels
 
         private void RegisterCommandTappedAsync(object obj)
         {
-            
+
         }
 
-        private async void RegisterUserCommandTappedAsync(object obj)
+        private async void RegisterUserCommandTappedAsync()
         {
             try
             {
@@ -152,11 +153,67 @@ namespace fitnessStudioMobileApp.ViewModels
                 if (token != null)
                     await App.Current.MainPage.DisplayAlert("Congratulation!", "User Registered successfully", "OK");
                 await Shell.Current.GoToAsync("LoginPage");
-                
+
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+            }
+        }
+
+        //reset the password show here
+        private async void SendPasswordResetEmailAsync()
+        {
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", "Please enter your registered email!", "OK");
+                // Notify user to enter an email address
+                return;
+            }
+
+            try
+            {
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
+                await authProvider.SendPasswordResetEmailAsync(Email);
+                await App.Current.MainPage.DisplayAlert("Success", "Password reset link has been sent to your email.", "OK");
+                // Notify user that email has been sent
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                // Handle any errors that occur during the process
+            }
+        }
+
+        private async Task OnLogoutButtonAsync()
+        {
+            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
+            var token = Preferences.Get("FreshFirebaseToken", defaultValue: null);
+            bool confirmLogout = await App.Current.MainPage.DisplayAlert("Logout", "Are you sure you want to log out?", "Yes", "No");
+
+            try
+            {
+                if (confirmLogout)
+                {
+                    // Check if a token exists before trying to remove it.
+                    var tokenExists = Preferences.ContainsKey("FreshFirebaseToken");
+                    if (tokenExists)
+                    {
+                        // Clear the locally stored authentication token or any other user details
+                        Preferences.Remove("FreshFirebaseToken");
+                        // Optionally, clear all preferences if suitable for your application
+                        // Preferences.Clear();
+                    }
+
+                    // Navigate to LoginPage
+                    await Shell.Current.GoToAsync("//WelcomePage", true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Logout error: {ex.Message}");
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -166,5 +223,6 @@ namespace fitnessStudioMobileApp.ViewModels
             var data = await firebaseDatabase.GetDataAsync("your/path/here");
             // Use the data as needed in your ViewModel
         }
+
     }
 }
