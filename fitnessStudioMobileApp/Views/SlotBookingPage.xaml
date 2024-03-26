@@ -8,7 +8,7 @@
         <FlexLayout.Resources>
             <Style TargetType="Button">
                 <Setter  Property="TextColor" Value="White"/>
-                <Setter  Property="BackgroundColor" Value="Blue"/>
+                <Setter  Property="BackgroundColor" Value="{StaticResource ActiveButtonBackgroundColor}"/>
                 <Setter Property="Margin" Value="0,0,10,0"/>
             </Style>
         </FlexLayout.Resources>
