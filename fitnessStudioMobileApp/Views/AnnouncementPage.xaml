@@ -2,11 +2,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="fitnessStudioMobileApp.Views.AnnouncementPage"
-             Title="AnnouncementPage">
+             xmlns:namespace="clr-namespace:fitnessStudioMobileApp.ViewModels"
+             xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             Shell.BackgroundColor="{StaticResource ActiveButtonBackgroundColor}"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="{StaticResource MainBackgroundColor}"
+             Title="">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back_button.png"/>
+    </Shell.BackButtonBehavior>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <VerticalStackLayout Padding="{OnPlatform 30}">
+            <Label 
+                Text="Announcements"
+                FontSize="{OnPlatform 24}"
+                FontFamily="WorkSansMedium"
+                CharacterSpacing="-0.5"
+                TextColor="{StaticResource NormalTextColor}"
+                HorizontalOptions="Start"/>
+        </VerticalStackLayout>
+
+        <listView:SfListView x:Name="AnnouncementListView"
+                      Orientation="Vertical"
+                      ScrollBarVisibility="Always"
+                      MinimumHeightRequest="{OnPlatform 700}"
+                      ItemSize="{OnPlatform 170}"
+                      ItemSpacing="{OnPlatform '0,0,10,0'}"
+                      ItemsSource="{Binding AnnouncementInfo}">
+            <listView:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnPlatform 100}"/>
+                            <RowDefinition Height="{OnPlatform Auto}"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding AnnouncementImage}" Grid.Row="0" BackgroundColor="White" Aspect="AspectFit" />
+                        <Frame Grid.Row="1" Padding="{OnPlatform 0}" CornerRadius="0" BorderColor="Transparent" BackgroundColor="{StaticResource FrameBackgroundColor}">
+                            <Label Text="{Binding AnnouncementDetail}" Grid.Row="1" TextColor="{StaticResource ActiveButtonTextColor}" LineBreakMode="WordWrap" FontFamily="WorkSansRegular" FontSize="{OnPlatform 16}" Padding="{OnPlatform 3}"/>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+        </listView:SfListView>
     </VerticalStackLayout>
 </ContentPage>
