@@ -15,7 +15,7 @@
                 </ImageButton>
             </Frame>
 
-            <Label Text="{Binding fullName}"
+            <Label Text="{Binding FullName}"
                    FontSize="{OnPlatform 28}"
                    TextColor="{StaticResource NormalTextColor}"
                    FontFamily="WorkSansSemiBold"

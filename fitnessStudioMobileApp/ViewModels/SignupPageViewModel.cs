@@ -1,5 +1,6 @@
 ﻿using fitnessStudioMobileApp.Views;
 using fitnessStudioMobileApp.Services;
+using fitnessStudioMobileApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,6 +51,15 @@ namespace fitnessStudioMobileApp.ViewModels
         //email authentication
         public new event PropertyChangedEventHandler PropertyChanged;
 
+        [ObservableProperty]
+        private string fullName;
+
+        [ObservableProperty]
+        private string homeAddress;
+
+        [ObservableProperty]
+        private string phoneNumber;
+
         private string userName;
 
         private string userPassword;
@@ -98,6 +108,13 @@ namespace fitnessStudioMobileApp.ViewModels
             }
         }
 
+        private PersonalInfo _personalInfo;
+        public PersonalInfo PersonalInfo
+        {
+            get => _personalInfo;
+            set => SetProperty(ref _personalInfo, value);
+        }
+
         //email authentication code
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
@@ -118,6 +135,25 @@ namespace fitnessStudioMobileApp.ViewModels
             RegisterUserCommand = new Command(RegisterUserCommandTappedAsync);
             OnLogoutButtonCommand = new Command(async () => await OnLogoutButtonAsync());
             ButtonSendLinkCommand = new RelayCommand(SendPasswordResetEmailAsync);
+
+            LoadUserProfile();
+
+        }
+
+        public void LoadUserProfile()
+        {
+            var personalInfoJson = Preferences.Get("PersonalInfo", string.Empty);
+            if (!string.IsNullOrEmpty(personalInfoJson))
+            {
+                Debug.WriteLine("Loading user profile...");
+
+                PersonalInfo = JsonConvert.DeserializeObject<PersonalInfo>(personalInfoJson);
+                // Update ViewModel properties with loaded data
+                FullName = PersonalInfo.FullName;
+                Email = PersonalInfo.Email;
+                PhoneNumber = PersonalInfo.PhoneNumber;
+                HomeAddress = PersonalInfo.HomeAddress;
+            }
         }
 
         //get the registered email and password from the signupPage, and validate the email and password is correct
@@ -150,9 +186,21 @@ namespace fitnessStudioMobileApp.ViewModels
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
                 string token = auth.FirebaseToken;
+                var personalInfo = new PersonalInfo
+                {
+                    FullName = this.FullName,
+                    Email = this.Email,
+                    PhoneNumber = this.PhoneNumber,
+                    HomeAddress = this.HomeAddress
+                };
                 if (token != null)
+                {
+                    var personalInfoJson = JsonConvert.SerializeObject(personalInfo);
+                    Preferences.Set("PersonalInfo", personalInfoJson);
                     await App.Current.MainPage.DisplayAlert("Congratulation!", "User Registered successfully", "OK");
-                await Shell.Current.GoToAsync("LoginPage");
+                    await Shell.Current.GoToAsync("LoginPage");
+
+                }
 
             }
             catch (Exception ex)

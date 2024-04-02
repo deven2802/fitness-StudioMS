@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace fitnessStudioMobileApp.Services
 {
@@ -19,31 +20,28 @@ namespace fitnessStudioMobileApp.Services
         public FirebaseStorageService(string firebaseStorageBucket)
         {
             _httpClient = new HttpClient();
-            _firebaseStorageUrl = $"https://firebasestorage.googleapis.com/v0/b/gs://fitnessstudioms-b48bf.appspot.com/o";
+            _firebaseStorageUrl = $"gs://fitnessstudioms-b48bf.appspot.com";
         }
 
-        public async Task<string> UploadFileAsync(Stream fileStream, string fileName, string firebaseToken = null)
+        public async Task<string> UploadFileAsync(Stream fileStream, string fileName)
         {
             try
             {
-
-                string url = $"{_firebaseStorageUrl}?name={Uri.EscapeDataString(fileName)}&uploadType=media";
-
-                // Optionally add an Authorization header if your Firebase Storage requires authentication
-                // _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", firebaseToken);
-
+                fileStream.Position = 0; // Reset stream position
+                string url = $"https://firebasestorage.googleapis.com/v0/b/fitnessstudioms-b48bf.appspot.com/o?name={Uri.EscapeDataString(fileName)}&uploadType=media";
                 HttpContent content = new StreamContent(fileStream);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
                 HttpResponseMessage response = await _httpClient.PostAsync(url, content);
                 string resultContent = await response.Content.ReadAsStringAsync();
 
+                Debug.WriteLine($"Upload response: {resultContent}");
+
                 if (response.IsSuccessStatusCode)
                 {
-                    // Assuming the response contains the download URL or similar
-                    // You might need to adjust this part based on your requirements and the actual response structure
                     var resultObject = JsonConvert.DeserializeObject<FirebaseUploadResult>(resultContent);
-                    return resultObject?.MediaLink; // Return the direct link to the uploaded file
+                    Debug.WriteLine($"Uploaded File URL: {resultObject?.MediaLink}");
+                    return resultObject?.MediaLink;
                 }
                 else
                 {
@@ -52,8 +50,7 @@ namespace fitnessStudioMobileApp.Services
             }
             catch (Exception ex)
             {
-                // Log or handle exceptions
-                Console.WriteLine($"Error uploading file to Firebase Storage: {ex}");
+                Debug.WriteLine($"Error uploading file to Firebase Storage: {ex}");
                 return null;
             }
         }

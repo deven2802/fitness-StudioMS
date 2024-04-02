@@ -7,6 +7,14 @@ public partial class SettingPage : ContentPage
 	public SettingPage()
 	{
 		InitializeComponent();
-		this.BindingContext = new TabbedPageViewModel();
+		this.BindingContext = new SignupPageViewModel();
 	}
+
+    /*
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (this.BindingContext as SignupPageViewModel)?.LoadUserProfile();
+    }
+    */
 }

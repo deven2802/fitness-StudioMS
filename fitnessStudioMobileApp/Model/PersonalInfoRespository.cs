@@ -25,11 +25,11 @@ namespace fitnessStudioMobileApp.Model
         {
             var personalInfo = new ObservableCollection<PersonalInfo>();
 
-            for (int i = 0; i < FullNames.Length; i++)
+            for (int i = 0; i < FullName.Length; i++)
             {
                 var info = new PersonalInfo()
                 {
-                    FullName = FullNames[i],
+                    FullName = FullName[i],
                     Email = Email[i],
                     PhoneNumber = PhoneNumber[i],
                     HomeAddress = HomeAddress[i],
@@ -43,7 +43,7 @@ namespace fitnessStudioMobileApp.Model
 
         #region PersonalInfo
 
-        readonly string[] FullNames = new string[]
+        readonly string[] FullName = new string[]
         {
             "Alice Wong Li Li"
         };

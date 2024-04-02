@@ -1,3 +1,4 @@
+using fitnessStudioMobileApp.Model;
 using System.Globalization;
 
 namespace fitnessStudioMobileApp.Views;
@@ -30,8 +31,7 @@ public partial class SlotBookingPage : ContentPage
 
     private async void BookAppointment(string slot)
     {
-        // Add your appointment booking logic here
-        // ...
+
 
         // Mock delay to simulate booking process
         await Task.Delay(100);
@@ -40,7 +40,8 @@ public partial class SlotBookingPage : ContentPage
         bookedSlots.Add(slot);
 
         await DisplayAlert("Confirmation", $"Appointment booked for {slot}", "OK");
-        await Shell.Current.GoToAsync(nameof(UploadReceiptPage));
+
+     //   Preferences.Set("selectedSlot", selectedClass.ClassTime);
 
         // Optionally, reset the UI or navigate to another page
     }

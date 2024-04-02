@@ -102,20 +102,20 @@ namespace fitnessStudioMobileApp.ViewModels
             try
             {
                 // string firebaseToken = await GetFirebaseTokenAsync(); // Implement this method to get the Firebase token
-                string imageUrl = await _firebaseStorageService.UploadFileAsync(fileStream, _fileName);
-
+                var imageUrl = await _firebaseStorageService.UploadFileAsync(fileStream, _fileName);
                 if (!string.IsNullOrEmpty(imageUrl))
                 {
-                    MainThread.BeginInvokeOnMainThread(async () =>
+                    // Success
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await App.Current.MainPage.DisplayAlert("Success", "Payment Receipt Uploaded successfully!", "OK");
-                        await Shell.Current.GoToAsync("BookingPage");
+                        await Shell.Current.GoToAsync(nameof(BookingPage));
                     });
                 }
                 else
                 {
-                    // Handle the failure case, e.g., by showing an error message
-                    MainThread.BeginInvokeOnMainThread(async () =>
+                    // Failure
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await App.Current.MainPage.DisplayAlert("Error", "Failed to upload the payment receipt.", "OK");
                     });
